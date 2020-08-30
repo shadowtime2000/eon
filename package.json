@@ -1,0 +1,25 @@
+{
+  "name": "turboweb",
+  "version": "1.0.0",
+  "description": "A simple framework for creating web services",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codemaster138/turboweb.git"
+  },
+  "keywords": [
+    "Framework",
+    "Server",
+    "HTTP",
+    "Backend"
+  ],
+  "author": "Jake Sarjeant <pygamer138@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/codemaster138/turboweb/issues"
+  },
+  "homepage": "https://github.com/codemaster138/turboweb#readme"
+}
