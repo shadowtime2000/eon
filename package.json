@@ -1,5 +1,5 @@
 {
-  "name": "fasterjs",
+  "name": "eonjs",
   "version": "1.11.5",
   "description": "A simple framework for creating web services",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/codemaster138/fasterjs.git"
+    "url": "git+https://github.com/codemaster138/eonjs.git"
   },
   "keywords": [
     "Framework",
@@ -19,8 +19,8 @@
   "author": "Jake Sarjeant <pygamer138@gmail.com>",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/codemaster138/fasterjs/issues"
+    "url": "https://github.com/codemaster138/eonjs/issues"
   },
-  "homepage": "https://github.com/codemaster138/fasterjs#readme",
+  "homepage": "https://github.com/codemaster138/eonjs#readme",
   "dependencies": {}
 }
