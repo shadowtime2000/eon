@@ -47,7 +47,7 @@ class TurboWebEngine {
      */
     listen(callback) {
         const cb = () => {
-            if (typeof callback == 'function') return callback(this.port);
+            if (typeof callback === 'function') return callback(this.port);
         }
         this.server.listen(this.port, cb);
     }
