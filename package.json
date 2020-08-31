@@ -22,7 +22,5 @@
     "url": "https://github.com/codemaster138/fasterjs/issues"
   },
   "homepage": "https://github.com/codemaster138/fasterjs#readme",
-  "dependencies": {
-    "debug": "^4.1.1"
-  }
+  "dependencies": {}
 }

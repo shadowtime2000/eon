@@ -1,7 +1,7 @@
 const http = require('http');
 const { GETPath, POSTPath } = require('./path');
 const createLog = require('../libs/log');
-const log = createLog('turbo', 'TB_LOGLEVEL');
+const log = createLog('fasterjs', 'TB_LOGLEVEL');
 
 class TurboWebEngine {
     constructor(port, options) {

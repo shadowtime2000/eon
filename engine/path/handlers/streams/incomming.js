@@ -1,6 +1,6 @@
 
 const createLog = require('../../../../libs/log');
-const log = createLog('turbo', 'TB_LOGLEVEL');
+const log = createLog('fasterjs', 'TB_LOGLEVEL');
 
 class IncomingHTTPData {
     constructor(req) {
