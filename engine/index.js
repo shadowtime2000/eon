@@ -15,7 +15,7 @@ class TurboWebEngine {
         if (req.method == 'GET') {
             if (this._get_paths[baseUrl] === undefined) {
                 res.writeHead(404, `No path registered on ${baseUrl}`);
-                res.end(`No path registered on ${baseUrl}`);
+                res.end(`No GET path registered on ${baseUrl}`);
                 return;
             }
             this._get_paths[baseUrl].invoke(req, res);
@@ -24,7 +24,7 @@ class TurboWebEngine {
         if (req.method == 'POST') {
             if (this._post_paths[baseUrl] === undefined) {
                 res.writeHead(404, `No path registered on ${baseUrl}`);
-                res.end(`No path registered on ${baseUrl}`);
+                res.end(`No POST path registered on ${baseUrl}`);
                 return;
             }
             this._post_paths[baseUrl].invoke(req, res);
@@ -33,7 +33,7 @@ class TurboWebEngine {
         if (req.method == 'PUT') {
             if (this._put_paths[baseUrl] === undefined) {
                 res.writeHead(404, `No path registered on ${baseUrl}`);
-                res.end(`No path registered on ${baseUrl}`);
+                res.end(`No PUT path registered on ${baseUrl}`);
                 return;
             }
             this._put_paths[baseUrl].invoke(req, res);
@@ -68,7 +68,7 @@ class TurboWebEngine {
      */
     post(path) {
         const pathObject = new POSTPath(this);
-        this._get_paths[path] = pathObject;
+        this._post_paths[path] = pathObject;
         return pathObject;
     }
 }
