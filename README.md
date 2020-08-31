@@ -1,2 +1,2 @@
-# turboweb
-A simply framework for creating web services
+# Faster.js
+A simple framework for creating web services
