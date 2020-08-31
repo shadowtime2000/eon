@@ -8,7 +8,7 @@ Yes, another web server framework. Whenever a new one comes out, you have to ask
 Express is great, because it provides lots of features, but that also makes it a quite large library. With Eon, I tried to reduce the bundle size by writing as much code as possible on my own and adding only the neccessary features.
 
 ### 0 Dependencies
-As of `v1.11.5`, Eon.js has *no dependencies whatsoever*, thereby further reducing the bundle size and overhead of additional packages to manage.
+As of `v1.11.x`, Eon.js has *no dependencies whatsoever*, thereby further reducing the bundle size and overhead of additional packages to manage.
 
 # Installation
 To install eon, simply run
