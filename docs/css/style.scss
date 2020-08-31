@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+    font-size: 10px;
+}
+
+body {
+    width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    header {
+        width: 100vw;
+        height: 6rem;
+        background-color: rgba(255, 255, 255, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-flow: row nowrap;
+        padding: 3rem;
+
+        .logo {
+            height: 4rem;
+            width: 4rem;
+        }
+
+        nav {
+            a {
+                color: #313131;
+                text-decoration: none;
+                font-size: 1.8rem;
+
+                &:hover {
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    main {
+        width: 100%;
+        flex-grow: 1;
+
+        .page {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            &:nth-child(1) {
+                height: calc(100vh - 6rem);
+            }
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-flow: column;
+
+            .center {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                flex-flow: column;
+            }
+
+            h1 {
+                font-size: 12rem;
+                background-image: linear-gradient(to top right, #2F44FF, #E016CC);
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            a.button {
+                font-size: 2rem;
+                text-decoration: none;
+                color: #fff;
+                background: #2F44FF;
+                padding: 0.5rem 2rem;
+                border-radius: 1rem;
+                border: 0.5rem solid #2839d1;
+            }
+        }
+    }
+}
