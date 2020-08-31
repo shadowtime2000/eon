@@ -43,11 +43,11 @@ class TurboWebEngine {
 
     /**
      * Listen on this.port
-     * @param {Function} callback Called once listening
+     * @param {Function=} callback Called once listening
      */
     listen(callback) {
         const cb = () => {
-            return callback(this.port);
+            if (typeof callback == 'function') return callback(this.port);
         }
         this.server.listen(this.port, cb);
     }
