@@ -129,10 +129,10 @@ Args:
 ## Class: `OutgoingHTTPData`
 An outgoing HTTP response. Passed as second argument to request handlers
 
-## field: `endend:boolean`
+### field: `endend:boolean`
 Wether the stream has been closed
 
-## `status(code):OutgoingHTTPData`
+### `status(code):OutgoingHTTPData`
 Sets the response status
 
 Args:
@@ -140,7 +140,7 @@ Args:
 
 Returns: `OutgoingHTTPData` The object it was called on
 
-## `header(name, value):OutgoingHTTPData`
+### `header(name, value):OutgoingHTTPData`
 Sets a response header
 
 Args:
@@ -149,7 +149,7 @@ Args:
 
 Returns: `OutgoingHTTPData` The object it was called on
 
-## `getHeader(name):string`
+### `getHeader(name):string`
 Returns the value of a header
 
 Args:
@@ -157,7 +157,7 @@ Args:
 
 Returns `string` The value of the header
 
-## `write(data):OutgoingHTTPData`
+### `write(data):OutgoingHTTPData`
 Sends data to the client
 
 Args:
@@ -165,7 +165,7 @@ Args:
 
 Returns: `OutgoingHTTPData` The object it was called on
 
-## `end(data):OutgoingHTTPData`
+### `end(data):OutgoingHTTPData`
 Like `write()` but will close the stream
 
 Returns: `OutgoingHTTPData` The object it was called on
