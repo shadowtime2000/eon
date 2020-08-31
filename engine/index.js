@@ -1,9 +1,9 @@
 const http = require('http');
 const { GETPath, POSTPath } = require('./path');
 const createLog = require('../libs/log');
-const log = createLog('fasterjs', 'TB_LOGLEVEL');
+const log = createLog('fasterjs', 'FT_LOGLEVEL');
 
-class TurboWebEngine {
+class FasterWebEngine {
     constructor(port, options) {
         this.port = port || process.env.PORT || 8080;
         this._get_paths = {};
@@ -81,4 +81,4 @@ class TurboWebEngine {
     }
 }
 
-module.exports = TurboWebEngine;
+module.exports = FasterWebEngine;
