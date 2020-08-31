@@ -2,7 +2,7 @@
 A simple framework for creating web services
 
 ## Why Eon?
-Yes, another web server framework. Whenever a new one comes out, you have to ask yourself: Do I need this? Am I fine to just continue using express/fastify/etc...? I want to persent to you the reasons why I began writing this framework and hopefully make your decision a bit easier.
+Yes, another web server framework. Whenever a new one comes out, you have to ask yourself: Do I need this? Am I fine to just continue using express/fastify/etc...? I want to present to you the reasons why I began writing this framework and hopefully make your decision a bit easier.
 
 ### Express is _not_ a small framework
 Express is great, because it provides lots of features, but that also makes it a quite large library. With Eon, I tried to reduce the bundle size by writing as much code as possible on my own and adding only the neccessary features.
@@ -22,7 +22,7 @@ Here is an example of using Eon:
 // Require Eon
 const eon = require('eonjs');
 // Create App
-// Shorthand: const app = require('eon')(8080);
+// Shorthand: const app = require('eonjs')(8080);
 const app = eon(8080);
 // Create a get path
 app.get('/').json((req, res) => ({hello: 'world', how_are: 'you?'}));
@@ -125,3 +125,47 @@ Register an event handler. Multiple handlers can be registed for one event. **Ha
 Args:
 - `event:string` Name of the event to listen for
 - `handler:function(...args)` The handler to call when the event is fired
+
+## Class: `OutgoingHTTPData`
+An outgoing HTTP response. Passed as second argument to request handlers
+
+## field: `endend:boolean`
+Wether the stream has been closed
+
+## `status(code):OutgoingHTTPData`
+Sets the response status
+
+Args:
+- `code:number` The status code to send
+
+Returns: `OutgoingHTTPData` The object it was called on
+
+## `header(name, value):OutgoingHTTPData`
+Sets a response header
+
+Args:
+- `name:string` The name of the header
+- `value:string` The value of the header
+
+Returns: `OutgoingHTTPData` The object it was called on
+
+## `getHeader(name):string`
+Returns the value of a header
+
+Args:
+- `name:string` The name of the header to retrieve
+
+Returns `string` The value of the header
+
+## `write(data):OutgoingHTTPData`
+Sends data to the client
+
+Args:
+- `data:string` The data to write
+
+Returns: `OutgoingHTTPData` The object it was called on
+
+## `end(data):OutgoingHTTPData`
+Like `write()` but will close the stream
+
+Returns: `OutgoingHTTPData` The object it was called on
