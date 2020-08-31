@@ -1,6 +1,6 @@
 {
   "name": "eonjs",
-  "version": "1.11.13",
+  "version": "1.11.14",
   "description": "A simple framework for creating web services",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/codemaster138/eonjs.git"
+    "url": "git+https://github.com/codemaster138/eon.git"
   },
   "keywords": [
     "Framework",
