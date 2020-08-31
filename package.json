@@ -19,8 +19,8 @@
   "author": "Jake Sarjeant <pygamer138@gmail.com>",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/codemaster138/eonjs/issues"
+    "url": "https://github.com/codemaster138/eon/issues"
   },
-  "homepage": "https://github.com/codemaster138/eonjs#readme",
+  "homepage": "https://github.com/codemaster138/eon#readme",
   "dependencies": {}
 }
