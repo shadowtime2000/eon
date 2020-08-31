@@ -1,5 +1,6 @@
 const TextCallbackHandler = require('./handlers/text');
 const HookCallbackHandler = require('./handlers/hook');
+const JSONCallbackHandler = require('./handlers/json');
 
 class GETPath {
     constructor(engine) {
@@ -14,6 +15,11 @@ class GETPath {
 
     hook(callback) {
         this._handler = new HookCallbackHandler(callback);
+        return this._engine;
+    }
+
+    json(callback) {
+        this._handler = new JSONCallbackHandler(callback);
         return this._engine;
     }
 
