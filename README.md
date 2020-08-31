@@ -1,4 +1,4 @@
-# Eon.js
+# <img src="logo.svg" height="28px"/> Eon.js
 A simple framework for creating web services
 
 ## Why Eon?
