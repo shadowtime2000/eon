@@ -6,6 +6,8 @@ class IncomingHTTPData {
         this.error = false;
         this.headers = req.headers;
         this.rawHeaders = req.rawHeaders;
+        this.url = req.url;
+        this.pathname = this.whatwg.pathname;
         if (req.method == 'GET') {
             this.query = {};
             this.whatwg.searchParams.forEach((val, key) => this.query[key] = val);
