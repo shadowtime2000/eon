@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/codemaster138/turboweb/issues"
   },
-  "homepage": "https://github.com/codemaster138/turboweb#readme"
+  "homepage": "https://github.com/codemaster138/turboweb#readme",
+  "dependencies": {
+    "debug": "^4.1.1"
+  }
 }
