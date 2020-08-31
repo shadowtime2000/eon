@@ -1,5 +1,5 @@
 const http = require('http');
-const { GETPath } = require('./path');
+const { GETPath, POSTPath } = require('./path');
 
 class TurboWebEngine {
     constructor(port, options) {
@@ -58,6 +58,16 @@ class TurboWebEngine {
      */
     get(path) {
         const pathObject = new GETPath(this);
+        this._get_paths[path] = pathObject;
+        return pathObject;
+    }
+
+    /**
+     * This function creates a new POST path on the current engine
+     * @param {string} path Path to listen on. Example: `/` or `/test`
+     */
+    post(path) {
+        const pathObject = new POSTPath(this);
         this._get_paths[path] = pathObject;
         return pathObject;
     }
