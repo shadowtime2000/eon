@@ -25,5 +25,5 @@ const eon = require('eonjs');
 // Shorthand: const app = require('eon')(8080);
 const app = eon(8080);
 // Create a get path
-app.get('/').json((req, res) => {hello: 'world', how_are: 'you?'});
+app.get('/').json((req, res) => ({hello: 'world', how_are: 'you?'}));
 ```
