@@ -1,4 +1,4 @@
-const IncommingHTTPData = require('./incomming');
+const IncommingHTTPData = require('./incoming');
 const OutgoingHTTPData  = require('./outgoing');
 
 module.exports = {
