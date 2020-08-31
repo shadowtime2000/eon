@@ -1,5 +1,7 @@
 const http = require('http');
 const { GETPath, POSTPath } = require('./path');
+const createLog = require('../libs/log');
+const log = createLog('turbo', 'TB_LOGLEVEL');
 
 class TurboWebEngine {
     constructor(port, options) {
@@ -13,7 +15,9 @@ class TurboWebEngine {
     listener = (req, res) => {
         let baseUrl = new URL(req.url, 'http://localhost:3000').pathname;
         if (req.method == 'GET') {
+            log('info', `<= GET ${baseUrl}`);
             if (this._get_paths[baseUrl] === undefined) {
+                log('info', `=> \x1b[31m404\x1b[0m ${baseUrl}`);
                 res.writeHead(404, `No path registered on ${baseUrl}`);
                 res.end(`No GET path registered on ${baseUrl}`);
                 return;
@@ -22,7 +26,9 @@ class TurboWebEngine {
             return;
         }
         if (req.method == 'POST') {
+            log('info', `<= POST ${baseUrl}`);
             if (this._post_paths[baseUrl] === undefined) {
+                log('info', `=> \x1b[31m404\x1b[0m ${baseUrl}`);
                 res.writeHead(404, `No path registered on ${baseUrl}`);
                 res.end(`No POST path registered on ${baseUrl}`);
                 return;
@@ -31,7 +37,9 @@ class TurboWebEngine {
             return;
         }
         if (req.method == 'PUT') {
+            log('info', `<= PUT ${baseUrl}`);
             if (this._put_paths[baseUrl] === undefined) {
+                log('info', `=> \x1b[31m404\x1b[0m ${baseUrl}`);
                 res.writeHead(404, `No path registered on ${baseUrl}`);
                 res.end(`No PUT path registered on ${baseUrl}`);
                 return;

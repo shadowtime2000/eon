@@ -1,3 +1,7 @@
+
+const createLog = require('../../../../libs/log');
+const log = createLog('turbo', 'TB_LOGLEVEL');
+
 class IncomingHTTPData {
     constructor(req) {
         this.whatwg = new URL(req.url, `http://${req.headers.host}`);
@@ -8,20 +12,38 @@ class IncomingHTTPData {
         this.rawHeaders = req.rawHeaders;
         this.url = req.url;
         this.pathname = this.whatwg.pathname;
+        this._events = {};
         if (req.method == 'GET') {
             this.query = {};
             this.whatwg.searchParams.forEach((val, key) => this.query[key] = val);
         } else {
-            try {
-                if (req.headers['content-type'] === 'application/json') {
-                    this.body = JSON.parse(req.body || '');
-                } else {
-                    this.body = require('querystring').parse(req.body || '');
+            let body = "";
+            req.on('data', d => body += d.toString());
+            req.on('end', _ => {
+                try {
+                    if (req.headers['content-type'] === 'application/json') {
+                        log('info', 'request body is json');
+                        this.body = JSON.parse(body || '');
+                    } else {
+                        log('info', 'assumed request body is form');
+                        this.body = require('querystring').parse(body || '');
+                    }
+                    this._fire('body');
+                } catch (e) {
+                    log('warning', `Error while parsing body '${body}': ${e.message}`);
+                    this.error = e;
                 }
-            } catch (e) {
-                this.error = e;
-            }
+            });
         }
+    }
+
+    on(e, l) {
+        if (this._events[e]) return this._events[e].push(l);
+        this._events[e] = [l];
+    }
+
+    _fire(e, ...d) {
+        if (this._events[e]) this._events[e].forEach(l => l(...d));
     }
 }
 

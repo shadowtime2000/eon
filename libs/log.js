@@ -3,8 +3,8 @@ const createDebug = require('./debug');
 // Define logLevels
 const levels = {
     'error': 0,
-    'warning': 1,
-    'info': 2,
+    'info': 1,
+    'warning': 2,
     'verbose': 3,
     'silly': 4
 }
