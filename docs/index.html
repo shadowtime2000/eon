@@ -1,30 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eon.js</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="prism.css">
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/themes/vue.css">
 </head>
 <body>
-    <header>
-        <a href="/">
-            <img src="resources/logo.svg" alt="Logo" class="logo">
-        </a>
-        <nav>
-            <a href="/docs/Introduction.html">Documentation</a>
-        </nav>
-    </header>
-    <main>
-        <div class="page">
-            <div class="center">
-                <h1>Eon.js</h1>
-                <img src="resources/logo.svg" alt="Logo" class="center-image--medium">
-                <a href="/docs/Introduction.html" class="button">View Docs</a>
-            </div>
-        </div>
-    </main>
-    <script src="prism.js"></script>
+  <div id="app"></div>
+  <script>
+    window.$docsify = {
+      name: '',
+      repo: '',
+      loadSidebar: true,
+      subMaxLevel: 2,
+    }
+  </script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
 </body>
 </html>
