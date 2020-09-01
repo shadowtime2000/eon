@@ -72,6 +72,10 @@ pre[class*="language-"] {
 	white-space: normal;
 }
 
+.token {
+	font-family: Consolas, Monaco, "Fira Code", monospace !important;
+}
+
 .token.comment,
 .token.prolog,
 .token.doctype,
