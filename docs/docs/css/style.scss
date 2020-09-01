@@ -56,8 +56,21 @@ body {
         aside {
             width: 25rem !important;
             min-width: 25rem !important;
-            height: calc(100vh - 6rem);
-            border-right: 1px solid #bbb;
+            min-height: calc(100vh - 6rem);
+            padding: 1rem;
+            line-height: 2;
+
+            a {
+                font-size: 2.4rem;
+                display: block;
+                text-decoration: none;
+                position: relative;
+                color: #24292e;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
         }
 
         .content {
@@ -93,6 +106,20 @@ body {
             p {
                 font-size: 1.6rem;
                 font-weight: 400;
+                margin: 2rem 0;
+            }
+
+            :not(pre) > code {
+                background: #e5e5e5;
+                padding: 0.5rem 1rem;
+                font-size: 0.8em;
+                border-radius: 0.6rem;
+            }
+
+            ul,
+            ol {
+                font-size: 1.6rem;
+                margin-left: 2em;
             }
         }
     }

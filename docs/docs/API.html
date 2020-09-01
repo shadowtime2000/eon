@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation | Eon.js</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../prism.css">
+  </head>
+
+  <body>
+    <header>
+      <a href="/">
+        <img src="../resources/logo.svg" alt="Logo" class="logo">
+      </a>
+      <nav>
+        <a href="/docs/Introduction.html">Documentation</a>
+      </nav>
+    </header>
+    <main>
+      <aside>
+        <a href="/docs/Introduction.html">Introduction</a>
+        <a href="/docs/Examples.html">Examples</a>
+        <a href="/docs/API.html">API</a>
+      </aside>
+
+      <div class="content line-numbers">
+        <h1 id="api">API</h1>
+        <p>API referenece.</p>
+        <h3 id="eonporteonwebengine"><code>eon(port): EonWebEngine</code></h3>
+        <p>This function is the default export of the Eon library. It will
+          create a new EonWebEngine instance.</p>
+        <h2 id="classeonwebengine">Class: <code>EonWebEngine</code></h2>
+        <p>An instance of this class is created by <code>require('eon')(&lt;port&gt;)</code>;</p>
+        <h3 id="constructor-NaN"><code>constructor</code></h3>
+        <p>Args:</p>
+        <ul>
+          <li><code>port:number</code> The port to listen on</li>
+        </ul>
+        <h3 id="getpathpath"><code>get(path):Path</code></h3>
+        <p>Registers a new GET listener on <code>path</code>.</p>
+        <p>Args:</p>
+        <ul>
+          <li><code>path:string</code> The pathname to register the listener on.
+            Examples: <code>"/"</code>, <code>"/test"</code></li>
+        </ul>
+        <p>Returns: <code>GETPath extends Path</code></p>
+        <h3 id="postpathpath"><code>post(path):Path</code></h3>
+        <p>Registers a new POST listener on <code>path</code>.</p>
+        <p>Args:</p>
+        <ul>
+          <li><code>path:string</code> The pathname to register the listener on.
+            Examples: <code>"/"</code>, <code>"/test"</code></li>
+        </ul>
+        <p>Returns: <code>POSTPath extends Path</code></p>
+        <h3 id="listencallbackvoid"><code>listen([callback]):void</code></h3>
+        <p>Listens on the port specified by the constructor.</p>
+        <p>Args:</p>
+        <ul>
+          <li><code>callback?:function(port)</code> (optional) Will be called
+            once the server is listening. Arguments: The port the server is
+            listening on.</li>
+        </ul>
+        <p>Returns: <code>void</code></p>
+        <h2 id="classpath">Class: <code>Path</code></h2>
+        <p>A path listener</p>
+        <h3 id="textcallbackeonwebengine"><code>text(callback):EonWebEngine</code></h3>
+        <p>When a request is received on this path, the text returned from
+          <code>callback(req, res)</code> will be sent to the client.</p>
+        <p>Args:</p>
+        <ul>
+          <li><code>callback:function(req:IncomingHTTPData,
+              res:OutgoingHTTPData)</code> The request handler</li>
+        </ul>
+        <p>Returns: <code>EonWebEngine</code> The Engine that created it.</p>
+        <h3 id="jsoncallbackeonwebengine"><code>json(callback):EonWebEngine</code></h3>
+        <p>Like <code>Path.text()</code> but will run <code>JSON.stringify</code>
+          on callback output before sending</p>
+        <h3 id="hookcallbackeonwebengine"><code>hook(callback):EonWebEngine</code></h3>
+        <p>Like <code>Path.text()</code>, but expects the callback to send data
+          itsself</p>
+        <p>Args:</p>
+        <ul>
+          <li><code>callback:function(req:IncomingHTTPData,
+              res:OutgoingHTTPData)</code> The request handler</li>
+        </ul>
+        <p>Returns: <code>EonWebEngine</code> The Engine that created it.</p>
+        <h2 id="classincominghttpdata">Class: <code>IncomingHTTPData</code></h2>
+        <p>An incoming HTTP request</p>
+        <h3 id="fieldwhatwgurl">field: <code>whatwg:URL</code></h3>
+        <p>A parsed <code>URL</code> object (<a
+            href="https://nodejs.org/api/url.html#url_url_strings_and_url_objects">see
+            nodejs URL docs</a>)</p>
+        <h3 id="fieldmethodstring">field: <code>method:string</code></h3>
+        <p>The request method ('GET', 'POST', 'PUT', etc..)</p>
+        <h3 id="fieldheadersobject">field: <code>headers:object</code></h3>
+        <p>The request headers (<a
+            href="https://nodejs.org/api/http.html#http_message_headers">see
+            nodejs http docs</a>)</p>
+        <h3 id="fieldrawheadersobject">field: <code>rawHeaders:object</code></h3>
+        <p>The unprocessed request headers (<a
+            href="https://nodejs.org/api/http.html#http_message_rawheaders">see
+            nodejs http docs</a>)</p>
+        <h3 id="fieldurlstring">field: <code>url:string</code></h3>
+        <p>The full request url, without protocol and host. Example: <code>/p/a/t/h?name=john&amp;lastname=doe#info</code></p>
+        <h3 id="fieldpathnamestring">field: <code>pathname:string</code></h3>
+        <p>alias for <code>IncomingHTTPData.whatwg.pathname</code></p>
+        <h3 id="fieldqueryobject">field: <code>query:object</code></h3>
+        <p>The parsed querystring (Only available for GET requests)</p>
+        <h3 id="fieldbodyobject">field: <code>body:object</code></h3>
+        <p>The parsed post/put body (Only available for Non-GET requests
+          <strong>after the</strong> <code>body</code> <strong>event has fired</strong>)</p>
+        <h3 id="eventbody">event: <code>body</code></h3>
+        <p>Fired on POST-like requests after the body is received and parsed</p>
+        <p>Arguments to handler: none</p>
+        <h3 id="oneventhandler"><code>on(event, handler)</code></h3>
+        <p>Register an event handler. Multiple handlers can be registed for one
+          event. <strong>Handlers cannot be unregistered</strong></p>
+        <p>Args:</p>
+        <ul>
+          <li><code>event:string</code> Name of the event to listen for</li>
+          <li><code>handler:function(...args)</code> The handler to call when
+            the event is fired</li>
+        </ul>
+        <h2 id="classoutgoinghttpdata">Class: <code>OutgoingHTTPData</code></h2>
+        <p>An outgoing HTTP response. Passed as second argument to request
+          handlers</p>
+        <h3 id="fieldendendboolean">field: <code>endend:boolean</code></h3>
+        <p>Wether the stream has been closed</p>
+        <h3 id="statuscodeoutgoinghttpdata"><code>status(code):OutgoingHTTPData</code></h3>
+        <p>Sets the response status</p>
+        <p>Args:</p>
+        <ul>
+          <li><code>code:number</code> The status code to send</li>
+        </ul>
+        <p>Returns: <code>OutgoingHTTPData</code> The object it was called on</p>
+        <h3 id="headernamevalueoutgoinghttpdata"><code>header(name,
+            value):OutgoingHTTPData</code></h3>
+        <p>Sets a response header</p>
+        <p>Args:</p>
+        <ul>
+          <li><code>name:string</code> The name of the header</li>
+          <li><code>value:string</code> The value of the header</li>
+        </ul>
+        <p>Returns: <code>OutgoingHTTPData</code> The object it was called on</p>
+        <h3 id="getheadernamestring"><code>getHeader(name):string</code></h3>
+        <p>Returns the value of a header</p>
+        <p>Args:</p>
+        <ul>
+          <li><code>name:string</code> The name of the header to retrieve</li>
+        </ul>
+        <p>Returns <code>string</code> The value of the header</p>
+        <h3 id="writedataoutgoinghttpdata"><code>write(data):OutgoingHTTPData</code></h3>
+        <p>Sends data to the client</p>
+        <p>Args:</p>
+        <ul>
+          <li><code>data:string</code> The data to write</li>
+        </ul>
+        <p>Returns: <code>OutgoingHTTPData</code> The object it was called on</p>
+        <h3 id="enddataoutgoinghttpdata"><code>end(data):OutgoingHTTPData</code></h3>
+        <p>Like <code>write()</code> but will close the stream</p>
+        <p>Returns: <code>OutgoingHTTPData</code> The object it was called on</p>
+      </div>
+    </main>
+    <script src="../prism.js"></script>
+  </body>
+
+</html>

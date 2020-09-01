@@ -13,6 +13,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "webassembler": "^1.0.0"
+    "webassembler": "^1.0.1"
   }
 }

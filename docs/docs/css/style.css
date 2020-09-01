@@ -79,8 +79,21 @@ body main {
 body main aside {
   width: 25rem !important;
   min-width: 25rem !important;
-  height: calc(100vh - 6rem);
-  border-right: 1px solid #bbb;
+  min-height: calc(100vh - 6rem);
+  padding: 1rem;
+  line-height: 2;
+}
+
+body main aside a {
+  font-size: 2.4rem;
+  display: block;
+  text-decoration: none;
+  position: relative;
+  color: #24292e;
+}
+
+body main aside a:hover {
+  text-decoration: underline;
 }
 
 body main .content {
@@ -119,5 +132,19 @@ body main .content h2, body main .content h3, body main .content h4 {
 body main .content p {
   font-size: 1.6rem;
   font-weight: 400;
+  margin: 2rem 0;
+}
+
+body main .content :not(pre) > code {
+  background: #e5e5e5;
+  padding: 0.5rem 1rem;
+  font-size: 0.8em;
+  border-radius: 0.6rem;
+}
+
+body main .content ul,
+body main .content ol {
+  font-size: 1.6rem;
+  margin-left: 2em;
 }
 /*# sourceMappingURL=style.css.map */
