@@ -3,7 +3,7 @@ Here are some more advanced examples to help you up your game more quickly
 
 ## POST endpoint
 You can create a POST endpoint using the `post` method.
-As of version v1.12.0, POST paths now have a `onBody` method. This is like `hook`, but when the callback is invoked, the body is already available. You can use it like this:
+As of version v1.12.0, POST paths now have an `onBody` method. This is like `hook`, but when the callback is invoked, the body is already available. You can use it like this:
 
 ```js
 const eon = require('eonjs');
