@@ -25,3 +25,8 @@ Output:
 ```txt
 You sent me: {"foo":"bar","baz":"buzz"}
 ```
+The endpoint can also handle JSON input:
+```bash
+curl localhost:8080/post -d '{"foo":"bar","baz":"buzz"}' -H "content-type:application/json"; echo
+```
+Will result in the same output.
