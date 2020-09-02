@@ -57,6 +57,12 @@ Args:
 
 Returns: `EonWebEngine` The Engine that created it.
 
+## Class: `POSTPath extends Path`
+Like `Path`, but with some methods that are specific to POST, PUT, etc requests.
+
+### `onBody(callback):EonWebEngine`
+Like `Path.hook()`, but will wait until the request body is available. When the callback is invoked, `req.body` can be used.
+
 ## Class: `IncomingHTTPData`
 An incoming HTTP request
 
