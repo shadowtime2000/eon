@@ -1,7 +1,7 @@
 const http = require('http');
 const { GETPath, POSTPath } = require('./path');
 const createLog = require('../libs/log');
-const log = createLog('eonjs', 'FT_LOGLEVEL');
+const log = createLog('eonjs', 'EON_LOGLEVEL');
 
 class EonWebEngine {
     constructor(port, options) {

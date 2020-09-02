@@ -1,6 +1,6 @@
 
 const createLog = require('../../../../libs/log');
-const log = createLog('eonjs', 'FT_LOGLEVEL');
+const log = createLog('eonjs', 'EON_LOGLEVEL');
 
 class IncomingHTTPData {
     constructor(req) {
