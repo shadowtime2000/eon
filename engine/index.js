@@ -10,42 +10,42 @@ class EonWebEngine {
         this._post_paths = {};
         this._put_paths = {};
         this.server = http.createServer(this.listener);
-    }
 
-    listener = (req, res) => {
-        let baseUrl = new URL(req.url, 'http://localhost:3000').pathname;
-        if (req.method == 'GET') {
-            log('info', `<= GET ${baseUrl}`);
-            if (this._get_paths[baseUrl] === undefined) {
-                log('info', `=> \x1b[31m404\x1b[0m ${baseUrl}`);
-                res.writeHead(404, `No path registered on ${baseUrl}`);
-                res.end(`No GET path registered on ${baseUrl}`);
+        this.listener = (req, res) => {
+            let baseUrl = new URL(req.url, 'http://localhost:3000').pathname;
+            if (req.method == 'GET') {
+                log('info', `<= GET ${baseUrl}`);
+                if (this._get_paths[baseUrl] === undefined) {
+                    log('info', `=> \x1b[31m404\x1b[0m ${baseUrl}`);
+                    res.writeHead(404, `No path registered on ${baseUrl}`);
+                    res.end(`No GET path registered on ${baseUrl}`);
+                    return;
+                }
+                this._get_paths[baseUrl].invoke(req, res);
                 return;
             }
-            this._get_paths[baseUrl].invoke(req, res);
-            return;
-        }
-        if (req.method == 'POST') {
-            log('info', `<= POST ${baseUrl}`);
-            if (this._post_paths[baseUrl] === undefined) {
-                log('info', `=> \x1b[31m404\x1b[0m ${baseUrl}`);
-                res.writeHead(404, `No path registered on ${baseUrl}`);
-                res.end(`No POST path registered on ${baseUrl}`);
+            if (req.method == 'POST') {
+                log('info', `<= POST ${baseUrl}`);
+                if (this._post_paths[baseUrl] === undefined) {
+                    log('info', `=> \x1b[31m404\x1b[0m ${baseUrl}`);
+                    res.writeHead(404, `No path registered on ${baseUrl}`);
+                    res.end(`No POST path registered on ${baseUrl}`);
+                    return;
+                }
+                this._post_paths[baseUrl].invoke(req, res);
                 return;
             }
-            this._post_paths[baseUrl].invoke(req, res);
-            return;
-        }
-        if (req.method == 'PUT') {
-            log('info', `<= PUT ${baseUrl}`);
-            if (this._put_paths[baseUrl] === undefined) {
-                log('info', `=> \x1b[31m404\x1b[0m ${baseUrl}`);
-                res.writeHead(404, `No path registered on ${baseUrl}`);
-                res.end(`No PUT path registered on ${baseUrl}`);
+            if (req.method == 'PUT') {
+                log('info', `<= PUT ${baseUrl}`);
+                if (this._put_paths[baseUrl] === undefined) {
+                    log('info', `=> \x1b[31m404\x1b[0m ${baseUrl}`);
+                    res.writeHead(404, `No path registered on ${baseUrl}`);
+                    res.end(`No PUT path registered on ${baseUrl}`);
+                    return;
+                }
+                this._put_paths[baseUrl].invoke(req, res);
                 return;
             }
-            this._put_paths[baseUrl].invoke(req, res);
-            return;
         }
     }
 
