@@ -3,7 +3,9 @@ Here are some more advanced examples to help you up your game more quickly
 
 ## POST endpoint
 You can create a POST endpoint using the `post` method:
+
 !> Note that the body is received asynchronously and therefore the `hook` handler has to be used.
+
 ```js
 const eon = require('eonjs');
 // Create a post path on /post
