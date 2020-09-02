@@ -1,9 +1,8 @@
 class OutgoingHTTPData {
     constructor(res) {
         this.res = res;
+        this.ended = false;
     }
-
-    ended = false;
 
     status(n) { this.res.statusCode = n; return this; };
 
