@@ -32,7 +32,7 @@ app.get('/').json((req, res) => ({hello: 'world', how_are: 'you?'}));
 ```
 
 # API
-API referenece. **Please Refer to the full documentation at [eon.jsorg](https://eon.jsorg/#/)**
+API referenece. **Please Refer to the full documentation at [eon.js.org](https://eon.jsorg/#/)**
 
 ### `eon(port): EonWebEngine`
 This function is the default export of the Eon library. It will create a new EonWebEngine instance.
