@@ -1,4 +1,16 @@
 # <img src="logo-small.png" height="28px"/> Eon.js
+![version badge](https://img.shields.io/npm/v/eonjs)
+![license badge](https://img.shields.io/npm/l/eonjs)
+![size badge](https://img.shields.io/github/languages/code-size/eon-web/eon)
+![dependency badge](https://img.shields.io/badge/dependencies-none-brightgreen)
+![downloads badge](https://img.shields.io/npm/dw/eonjs?logo=npm)
+![issues badge](https://img.shields.io/github/issues/eon-web/eon)
+![closed issues badge](https://img.shields.io/github/issues-closed/eon-web/eon)
+![pr badge](https://img.shields.io/github/issues-pr/eon-web/eon)
+![stars badge](https://img.shields.io/github/stars/eon-web/eon)
+![website badge](https://img.shields.io/website?down_color=red&down_message=down.%20please%20report%20this%20to%20the%20repo%20owner&up_color=brightgreen&up_message=up&url=https%3A%2F%2Feon.js.org)
+![commit badge](https://img.shields.io/github/commit-activity/m/eon-web/eon)
+
 A simple framework for creating web services
 
 ## Why Eon?
