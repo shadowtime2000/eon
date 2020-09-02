@@ -9,7 +9,7 @@
 ![pr badge](https://img.shields.io/github/issues-pr/eon-web/eon)
 ![stars badge](https://img.shields.io/github/stars/eon-web/eon)
 ![website badge](https://img.shields.io/website?down_color=red&down_message=down.%20please%20report%20this%20to%20the%20repo%20owner&up_color=brightgreen&up_message=up&url=https%3A%2F%2Feon.js.org&cachebust=1)
-![commit badge](https://img.shields.io/github/commit-activity/m/eon-web/eon)
+![commit badge](https://img.shields.io/github/commit-activity/m/eon-web/eon?foo=bar)
 ![size badge](https://img.shields.io/bundlephobia/min/eonjs)
 ![repo size badge](https://img.shields.io/github/repo-size/eon-web/eon)
 
