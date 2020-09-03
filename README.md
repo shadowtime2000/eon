@@ -1,19 +1,23 @@
-# <img src="logo-small.png" height="28px"/> Eon.js
-![version badge](https://img.shields.io/npm/v/eonjs)
-![license badge](https://img.shields.io/npm/l/eonjs)
-![size badge](https://img.shields.io/github/languages/code-size/eon-web/eon)
-![dependency badge](https://img.shields.io/badge/dependencies-none-brightgreen)
-![downloads badge](https://img.shields.io/npm/dw/eonjs?logo=npm)
-![issues badge](https://img.shields.io/github/issues/eon-web/eon)
-![closed issues badge](https://img.shields.io/github/issues-closed/eon-web/eon)
-![pr badge](https://img.shields.io/github/issues-pr/eon-web/eon)
-![stars badge](https://img.shields.io/github/stars/eon-web/eon)
-![website badge](https://img.shields.io/website?down_color=red&down_message=down.%20please%20report%20this%20to%20the%20repo%20owner&up_color=brightgreen&up_message=up&url=https%3A%2F%2Feon.js.org&cachebust=1)
-![commit badge](https://img.shields.io/github/commit-activity/m/eon-web/eon?foo=bar)
-![size badge](https://img.shields.io/bundlephobia/min/eonjs)
-![repo size badge](https://img.shields.io/github/repo-size/eon-web/eon)
-
+<h1 align="center"><img src="logo-small.png" height="28px"/> Eon.js</h1>
+<p align="center">
 A simple framework for creating web services
+</p>
+<p align="center">
+<img src="cover.png" width="100%" height="auto">
+</p>
+<p align="center"><img src="https://img.shields.io/npm/v/eonjs" alt="version badge">
+<img src="https://img.shields.io/npm/l/eonjs" alt="license badge">
+<img src="https://img.shields.io/github/languages/code-size/eon-web/eon" alt="size badge">
+<img src="https://img.shields.io/badge/dependencies-none-brightgreen" alt="dependency badge">
+<img src="https://img.shields.io/npm/dw/eonjs?logo=npm" alt="downloads badge">
+<img src="https://img.shields.io/github/issues/eon-web/eon" alt="issues badge">
+<img src="https://img.shields.io/github/issues-closed/eon-web/eon" alt="closed issues badge">
+<img src="https://img.shields.io/github/issues-pr/eon-web/eon" alt="pr badge">
+<img src="https://img.shields.io/github/stars/eon-web/eon" alt="stars badge">
+<img src="https://img.shields.io/website?down_color=red&down_message=down.%20please%20report%20this%20to%20the%20repo%20owner&up_color=brightgreen&up_message=up&url=https%3A%2F%2Feon.js.org&cachebust=1" alt="website badge">
+<img src="https://img.shields.io/github/commit-activity/m/eon-web/eon?foo=bar" alt="commit badge">
+<img src="https://img.shields.io/bundlephobia/min/eonjs" alt="size badge">
+<img src="https://img.shields.io/github/repo-size/eon-web/eon" alt="repo size badge"></p>
 
 ## Why Eon?
 Yes, another web server framework. Whenever a new one comes out, you have to ask yourself: Do I need this? Am I fine to just continue using express/fastify/etc...? I want to present to you the reasons why I began writing this framework and hopefully make your decision a bit easier.
