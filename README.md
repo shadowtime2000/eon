@@ -3,7 +3,7 @@
 A simple framework for creating web services
 </p>
 <p align="center">
-<img src="cover.png" width="100%" height="auto">
+<img src="https://raw.githubusercontent.com/eon-web/eon/HEAD/cover.png" width="100%" height="auto">
 </p>
 <p align="center"><img src="https://img.shields.io/npm/v/eonjs" alt="version badge">
 <img src="https://img.shields.io/npm/l/eonjs" alt="license badge">
