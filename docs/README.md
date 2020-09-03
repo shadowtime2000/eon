@@ -16,7 +16,7 @@ If you're using eon.js in your project, feel free to [send me an email](mailto:p
 # Installation
 To install eon, simply run
 ```bash
-npm i eonjs --save
+npm i eonjs@latest --save
 ```
 
 # Examples & Usage

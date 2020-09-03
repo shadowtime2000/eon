@@ -29,7 +29,7 @@ As of `v1.11.x`, Eon.js has *no dependencies whatsoever*, thereby further reduci
 # Installation
 To install eon, simply run
 ```bash
-npm i eonjs --save
+npm i eonjs@latest --save
 ```
 
 # Examples & Usage
