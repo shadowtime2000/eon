@@ -45,3 +45,17 @@ The endpoint can also handle JSON input:
 curl localhost:8080/post -d '{"foo":"bar","baz":"buzz"}' -H "content-type:application/json"; echo
 ```
 Will result in the same output.
+
+## Own Server
+As of v1.14.0, the `EonWebEngine` class is also callable, so you can pass it as a listener to `http`'s `createServer` method. This is especially useful when you need your server to use **SSL**. In that case you could pass the `eon` instance to `https.createServer` instead of calling `eon.listen()`.
+
+Ex.:
+```js
+const eon = require('eon')(8080);
+const http = require('http');
+
+eon.get('/').text(_ => 'hi');
+http.createServer(eon).listen(8080, _ => {
+    console.log('Listening on http://localhost:8080/');
+});
+```

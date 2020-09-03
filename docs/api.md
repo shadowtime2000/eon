@@ -9,8 +9,8 @@ Args:
     - `options.post:PostOptions` Options for POST-like (POST, PUT, DELETE) requests
         - `post.noParseBody:boolean` If this option is set to `true`, eon will **not** parse the request body. The body value will be equal to `IncomingHTTPData.rawBody`.
 
-## Class: `EonWebEngine`
-An instance of this class is created by `require('eon')(<port>)`;
+## Class: `EonWebEngine extends Function`
+An instance of this class is created by `require('eon')(<port>)`. As of v1.14.0, this class is *callable*. You can pass it as a listener to http.createServer. ([see advanced docs](/#/advanced?id=ownserver))
 
 ### `constructor`
 Args:
