@@ -24,9 +24,6 @@ Express is great, because it provides lots of features, but that also makes it a
 ### 0 Dependencies
 As of `v1.11.x`, Eon.js has *no dependencies whatsoever*, thereby further reducing the bundle size and overhead of additional packages to manage.
 
-## Using Eon.js in your projects?
-If you're using eon.js in your project, feel free to [send me an email](mailto:pygamer138@gmail.com) for a chance to get **your logo** displayed here! [Read More >>>](https://github.com/eon-web/eon/wiki/Refferals)
-
 # Installation
 To install eon, simply run
 ```bash
