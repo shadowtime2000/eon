@@ -2,9 +2,11 @@ const http = require('http');
 const { GETPath, POSTPath } = require('./path');
 const createLog = require('../libs/log');
 const log = createLog('eonjs', 'EON_LOGLEVEL');
+const Callable = require('./callable');
 
-class EonWebEngine {
+class EonWebEngine extends Callable {
     constructor(port, options) {
+        super();
         this.port = port || process.env.PORT || 8080;
         this._get_paths = {};
         this._post_paths = {};
@@ -51,8 +53,10 @@ class EonWebEngine {
                 return;
             }
         }
+    }
 
-        this.server = http.createServer(this.listener);
+    _call(...args) {
+        return this.listener(...args);
     }
 
     /**
@@ -60,6 +64,7 @@ class EonWebEngine {
      * @param {Function=} callback Called once listening
      */
     listen(callback) {
+        this.server = http.createServer(this.listener);
         const cb = () => {
             if (typeof callback === 'function') return callback(this.port);
         }

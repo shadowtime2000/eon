@@ -1,8 +1,4 @@
-const eon = require('..')(8080, {
-    post: {
-        noParseBody: true
-    }
-});
+const eon = require('..')(8080);
 
 eon.get('/').text((req, res) => 'eon test');
 eon.get('/hook').hook((req, res) => res.end(`You requested ${req.pathname}`));
