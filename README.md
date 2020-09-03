@@ -12,6 +12,8 @@
 ![commit badge](https://img.shields.io/github/commit-activity/m/eon-web/eon?foo=bar)
 ![size badge](https://img.shields.io/bundlephobia/min/eonjs)
 ![repo size badge](https://img.shields.io/github/repo-size/eon-web/eon)
+[![Star on GitHub](https://img.shields.io/github/stars/eon-web/eon?style=social)](https://github.com/eon-web/eon)
+[![Fork on GitHub](https://img.shields.io/github/forks/eon-web/eon?style=social)](https://github.com/eon-web/eon)
 
 A simple framework for creating web services
 
