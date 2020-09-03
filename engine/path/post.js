@@ -6,6 +6,10 @@ class POSTPath extends BasePath {
             return callback(req, res);
         })});
     }
+
+    invoke(req, res, noParseBody) {
+        super.invoke(req, res, noParseBody);
+    }
 }
 
 module.exports = POSTPath;

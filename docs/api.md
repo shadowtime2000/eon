@@ -1,8 +1,13 @@
 # API
 API referenece.
 
-### `eon(port): EonWebEngine`
+### `eon(port [, options]): EonWebEngine`
 This function is the default export of the Eon library. It will create a new EonWebEngine instance.
+Args:
+- `port:number` The port to listen on
+- `options:EonWebOptions` Additional options
+    - `options.post:PostOptions` Options for POST-like (POST, PUT, DELETE) requests
+        - `post.noParseBody:boolean` If this option is set to `true`, eon will **not** parse the request body. The body value will be equal to `IncomingHTTPData.rawBody`.
 
 ## Class: `EonWebEngine`
 An instance of this class is created by `require('eon')(<port>)`;
@@ -88,7 +93,10 @@ alias for `IncomingHTTPData.whatwg.pathname`
 The parsed querystring (Only available for GET requests)
 
 ### field: `body:object`
-The parsed post/put body (Only available for Non-GET requests **after the** `body` **event has fired**)
+The parsed post/put body (Only available for Non-GET requests **after the** `body` **event has fired**). If the Engine's `noParseBody` option is set, this will be equal to `rawBody`
+
+### field: `rawBody:string`
+The unparsed post/put body.
 
 ### event: `body`
 Fired on POST-like requests after the body is received and parsed

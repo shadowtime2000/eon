@@ -9,8 +9,12 @@ class EonWebEngine {
         this._get_paths = {};
         this._post_paths = {};
         this._put_paths = {};
-        this.server = http.createServer(this.listener);
-
+        let defaults = {
+            post: {
+                noParseBody: false
+            }
+        }
+        this.options = { ...defaults, ...options};
         this.listener = (req, res) => {
             let baseUrl = new URL(req.url, 'http://localhost:3000').pathname;
             if (req.method == 'GET') {
@@ -32,7 +36,7 @@ class EonWebEngine {
                     res.end(`No POST path registered on ${baseUrl}`);
                     return;
                 }
-                this._post_paths[baseUrl].invoke(req, res);
+                this._post_paths[baseUrl].invoke(req, res, this.options.post.noParseBody);
                 return;
             }
             if (req.method == 'PUT') {
@@ -43,10 +47,12 @@ class EonWebEngine {
                     res.end(`No PUT path registered on ${baseUrl}`);
                     return;
                 }
-                this._put_paths[baseUrl].invoke(req, res);
+                this._put_paths[baseUrl].invoke(req, res, this.options.post.noParseBody);
                 return;
             }
         }
+
+        this.server = http.createServer(this.listener);
     }
 
     /**
