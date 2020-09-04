@@ -9,7 +9,7 @@ class Plug extends Callable {
         this.apply();
     }
 
-    apply() {}
+    apply(pluggable) {}
 }
 
 module.exports = { Plug };

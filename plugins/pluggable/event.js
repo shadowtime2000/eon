@@ -4,10 +4,11 @@
 class PlugEvent {
     /**
      * Create a new Plugify Event
-     * @param {*} options Create a new plugify event
+     * @param {Pluggable} host Host
      */
-    constructor(options) {
+    constructor(host) {
         this.hooks = [];
+        this.host = host;
     }
 
     /**
@@ -16,18 +17,19 @@ class PlugEvent {
      */
     fire(...args) {
         this.hooks.forEach(hook => {
-            hook(...args);
+            hook(this.host, ...args);
         });
     }
 
     /**
-     * Asynchronously fire the Event.
+     * Asynchronously fire the Event. This options great when an event might trigger side-effects
+     * whose outputs are not valuable to the immediatly following code.
      * @param {boolean} sync Whether to call the hooks one adfter another. Default: false
      * @param  {...any=} args Arguments passed to handlers
      */
     async asyncFire(snyc, ...args) {
         this.hooks.forEach(hook => {
-            sync ? hook(...args) : this._asyncCall(hook, args);
+            sync ? hook(this.host, ...args) : this._asyncCall(hook, [this.host, ...args]);
         });
     }
 

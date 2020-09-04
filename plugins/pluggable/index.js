@@ -5,8 +5,13 @@ const PlugEvent = require('./event');
  */
 // More to come
 class Pluggable {
-    constructor() {
+    constructor(options) {
         this.events = {};
+        this.options = options;
+    }
+
+    register(e, l) {
+        this.events[e] = l;
     }
 }
 
