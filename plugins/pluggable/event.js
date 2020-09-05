@@ -12,6 +12,14 @@ class PlugEvent {
     }
 
     /**
+     * Listen for event emission
+     * @param {function} callback Called when event is emitted
+     */
+    listen(callback) {
+        this.hooks.append(callback);
+    }
+
+    /**
      * Fire the Event
      * @param  {...any=} args Arguments passed to handlers
      */
