@@ -5,9 +5,16 @@ const PlugEvent = require('./event');
  */
 // More to come
 class Pluggable {
-    constructor(options) {
+    constructor(plugs, options) {
         this.events = {};
+        this.plugs = plugs || [];
+        this.plugs.map(p => this.registerPlug(p));
         this.options = options;
+    }
+
+    registerPlug(p) {
+        if (!this.plugs.includes(p)) this.plugs.push(p);
+        p.apply(this);
     }
 
     register(e, l) {
