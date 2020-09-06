@@ -1,7 +1,6 @@
 const TextCallbackHandler = require('./handlers/text');
 const HookCallbackHandler = require('./handlers/hook');
 const JSONCallbackHandler = require('./handlers/json');
-const MiddlewareCallbackHandler = require('./handlers/connect');
 
 class GETPath {
     constructor(engine) {
