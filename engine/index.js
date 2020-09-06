@@ -34,6 +34,7 @@ class EonWebEngine extends Callable {
 
     use(path, callback) {
         this.host.events.middleware.fire(path, callback, this);
+        return this;
     }
 
     listen(callback) {
