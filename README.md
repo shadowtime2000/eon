@@ -49,6 +49,9 @@ app.get('/').json((req, res) => ({hello: 'world', how_are: 'you?'}));
 # API
 API referenece. **Please Refer to the full documentation at [eon.js.org](https://eon.js.org/#/)**
 
+## Plugins API
+**New In v1.15**: Version 1.15 introduces the new Plugins API. I decided to take the time, rather sooner than later, to rewrite Eon into an "everythings-a-plugin" type of system. The full Plugin docs will be available soon at [eon.js.org](https://eon.js.org).
+
 ### `eon(port): EonWebEngine`
 This function is the default export of the Eon library. It will create a new EonWebEngine instance.
 
