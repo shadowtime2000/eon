@@ -22,7 +22,7 @@ class MiddlewarePlugin {
             (engine.globals.middlewares = engine.globals.middlewares || []).push({path, handle});
         });
 
-        engine.events.onBeforeRequest.listen((engine, req, res, webEngine) => {
+        engine.events.onBeforeResolution.listen((engine, req, res, webEngine) => {
             engine.globals.middlewares = engine.globals.middlewares || [];
 
             function next(err) {
