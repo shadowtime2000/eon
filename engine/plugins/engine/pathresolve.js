@@ -66,7 +66,6 @@ class PathResolvePlugin {
             let pathInfo = this.resolve(match, basePath.pathname);
             engine.globals.path = paths[match];
             engine.globals.pathInfo = pathInfo;
-            console.log('info', pathInfo);
         });
     }
 }

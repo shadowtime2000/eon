@@ -8,6 +8,7 @@ class Engine extends Pluggable {
         super(options);
         this.events.create = new PlugEvent(this);
         this.events.resolvePath = new PlugEvent(this);
+        this.events.onBeforeRequest = new PlugEvent(this);
         this.events.request = new PlugEvent(this);
         this.events.listen = new PlugEvent(this);
         this.events.tearDown = new PlugEvent(this);

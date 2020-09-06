@@ -13,7 +13,8 @@ class HandlerPlugin {
                 return res.end(`No ${req.method} path registered on ${req.url}`);
             }
             req.data = engine.globals.pathInfo;
-            engine.globals.path.invoke(req, res, webEngine.options.noParseBody);
+            engine.events.onBeforeRequest.fire(req, res, webEngine);
+            (async () => { engine.globals.path.invoke(req, res, webEngine.options.noParseBody); })();
         });
     }
 }
