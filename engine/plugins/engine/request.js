@@ -7,7 +7,7 @@ class HandlerPlugin {
             const basePath = (new URL(req.url, `http://localhost:${webEngine.port}`));
             // Resolve path
             engine.globals.unresolved = undefined;
-            engine.event.onBeforeResolution.fire(req, res, webEngine);
+            engine.events.onBeforeResolution.fire(req, res, webEngine);
             engine.events.resolvePath.fire(basePath, req, webEngine);
             if (engine.globals.unresolved !== undefined) {
                 res.statusCode = 404;
