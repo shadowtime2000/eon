@@ -14,7 +14,8 @@ class HandlerPlugin {
             }
             req.data = engine.globals.pathInfo;
             engine.events.onBeforeRequest.fire(req, res, webEngine);
-            (async () => { engine.globals.path.invoke(req, res, webEngine.options.noParseBody); })();
+            if (!res.writeableEnded)
+                (async () => { engine.globals.path.invoke(req, res, webEngine.options.noParseBody); })();
         });
     }
 }
