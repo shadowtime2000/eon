@@ -5,4 +5,5 @@
     * [Advanced Samples](/advanced.md "Advanced Examples | Eon")
     * [Debugging](/debugging.md "Debugging | Eon")
 * API
-    * [Core API](api.md "Core API | Eon")
+    * [Core API](/api.md "Core API | Eon")
+    * [Plugins API](/plugins.md "Plugins API | Eon")
