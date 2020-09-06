@@ -1,16 +1,43 @@
 const http = require('http');
-const { GETPath, POSTPath } = require('./path');
 const createLog = require('../libs/log');
 const log = createLog('eonjs', 'EON_LOGLEVEL');
 const Callable = require('./callable');
 const Engine = require('./Pluggables/engine');
+const EnginePlugins = require('./plugins/engine');
 
 class EonWebEngine extends Callable {
     constructor(port, options) {
-        this.host = new Engine();
-        this.port = port || process.env.PORT || 8080;
+        super();
+        let plugins = [...EnginePlugins, ...((options || {}).plugins || [])];
+        this.host = new Engine(plugins);
+        this.host.globals._get_paths = {};
+        this.host.globals._post_paths = {};
+        this.port = port || process.env.PORT || 8080;
+        this.options = options || {};
+        
+        this.listener = (req, res) => {
+            this.host.events.request.fire(req, res, this);
+        }
+    }
+
+    get(path) {
+        this.host.events.create.fire('get', path, this);
+        this.host.globals._get_paths[path] = (this.host.globals.next_path);
+        return this.host.globals.next_path;
+    }
+
+    post(path) {
+        this.host.events.create.fire('post', path, this);
+        this.host.globals._post_paths[path] = (this.host.globals.next_path);
+        return this.host.globals.next_path;
+    }
+
+    listen(callback) {
+        this.host.events.listen.fire(callback, this);
     }
 }
+
+module.exports = EonWebEngine;
 
 // class EonWebEngine extends Callable {
 //     constructor(port, options) {

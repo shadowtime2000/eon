@@ -5,10 +5,11 @@ const PlugEvent = require('./event');
  */
 // More to come
 class Pluggable {
-    constructor(plugs, options) {
+    constructor(options) {
         this.events = {};
-        this.plugs = plugs || [];
-        this.plugs.map(p => this.registerPlug(p));
+        // Share data between Plugs using `globals`
+        this.globals = {};
+        this.plugs = [];
         this.options = options;
     }
 

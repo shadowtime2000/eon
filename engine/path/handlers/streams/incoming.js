@@ -5,6 +5,7 @@ const log = createLog('eonjs', 'EON_LOGLEVEL');
 class IncomingHTTPData {
     constructor(req, noParseBody) {
         this.whatwg = new URL(req.url, `http://${req.headers.host}`);
+        this.data = req.data;
         this.method = req.method;
         this.body = undefined;
         this.error = false;

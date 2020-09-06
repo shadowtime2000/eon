@@ -16,7 +16,7 @@ class PlugEvent {
      * @param {function} callback Called when event is emitted
      */
     listen(callback) {
-        this.hooks.append(callback);
+        this.hooks.push(callback);
     }
 
     /**
