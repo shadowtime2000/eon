@@ -28,7 +28,7 @@ class MiddlewarePlugin {
             function next(err) {
                 if (err) {
                     res.statusCode = err.status || 500;
-                    res.end(err);
+                    res.end(err.message);
                 } else if (engine.globals.middlewares.length) {
                     engine.globals.middlewares.shift().handle(req, res, next);
                 }
