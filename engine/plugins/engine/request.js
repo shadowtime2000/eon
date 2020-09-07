@@ -1,3 +1,5 @@
+const log = require('../../../libs/log')('eonjs', 'EON_LOGLEVEL');
+
 class HandlerPlugin {
     constructor() { }
 
@@ -7,7 +9,10 @@ class HandlerPlugin {
             const basePath = (new URL(req.url, `http://localhost:${webEngine.port}`));
             // Resolve path
             engine.globals.unresolved = undefined;
+            log('verbose', 'invoking onBeforeResolution');
+            log('verbose', `res is ${res.writeableEnded ? 'closed' : 'open'}`);
             engine.events.onBeforeResolution.fire(req, res, webEngine);
+            log('verbose', 'invocation has returned');
             if (!res.writeableEnded) {
                 engine.events.resolvePath.fire(basePath, req, webEngine);
                 if (engine.globals.unresolved !== undefined) {

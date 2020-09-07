@@ -26,6 +26,8 @@ class MiddlewarePlugin {
 
         engine.events.onBeforeResolution.listen((engine, req, res, webEngine) => {
             engine.globals.middlewares = engine.globals.middlewares || [];
+            log('verbose', 'onBeforeResolution invoked');
+            log('verbose', `res is ${res.writeableEnded ? 'closed' : 'open'}`);
 
             function next(err) {
                 if (err) {
