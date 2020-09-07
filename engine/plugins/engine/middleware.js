@@ -53,6 +53,7 @@ class MiddlewarePlugin {
                         }
                     }
                 } else {
+                    log('info', 'middleware stack done');
                     engine.events.middlewareFinished.fire(req, res, webEngine);
                 }
             }
