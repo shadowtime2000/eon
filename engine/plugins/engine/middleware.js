@@ -25,9 +25,10 @@ class MiddlewarePlugin {
         });
 
         engine.events.onBeforeResolution.listen((engine, req, res, webEngine) => {
-            let stack = engine.globals.middlewares || [];
+            let stack = (engine.globals.middlewares || []).map(el => el);
             log('verbose', 'onBeforeResolution invoked');
             log('verbose', `res is ${res.writeableEnded ? 'closed' : 'open'}`);
+            log('verbose', 'Middleware stack is', stack);
 
             function next(err) {
                 if (err) {
