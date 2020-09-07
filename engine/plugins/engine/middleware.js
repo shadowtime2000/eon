@@ -35,7 +35,7 @@ class MiddlewarePlugin {
                     res.statusCode = err.status || 500;
                     if (!res.writableEnded) res.end(err.message);
                     else log('warning', `middleware failed: ${err.message}`)
-                } else if (stack.length) {
+                } else if (stack.length > 0) {
                     let n = stack.shift();
                     if (req.url.startsWith(n.path)) {
                         let path_ = req.url.split('/');
@@ -50,7 +50,11 @@ class MiddlewarePlugin {
                             req.url = path;
                             n.handle(req, res, next);
                             req.url = old;
+                        } else {
+                            next();
                         }
+                    } else {
+                        next();
                     }
                 } else {
                     log('info', 'middleware stack done');
