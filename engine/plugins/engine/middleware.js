@@ -5,7 +5,7 @@ const log = require('../../../libs/log')('eonjs', 'EON_LOGLEVEL');
  */
 
 class MiddlewarePlugin {
-    constructor() {}
+    constructor() { }
 
     apply(engine) {
         engine.events.middleware.listen((engine, path_, callback, webEngine) => {
@@ -21,22 +21,37 @@ class MiddlewarePlugin {
                 throw "Middleware must be a function";
             }
 
-            (engine.globals.middlewares = engine.globals.middlewares || []).push({path, handle});
+            (engine.globals.middlewares = engine.globals.middlewares || []).push({ path, handle });
         });
 
         engine.events.onBeforeResolution.listen((engine, req, res, webEngine) => {
-            let stack = (engine.globals.middlewares || []).map(el => el);
+            let stack = (engine.globals.middlewares || []).map(el => el);
             log('verbose', 'onBeforeResolution invoked');
             log('verbose', `res is ${res.writeableEnded ? 'closed' : 'open'}`);
             log('verbose', 'Middleware stack is', stack);
 
             function next(err) {
                 if (err) {
-                    res.statusCode = err.status || 500;
+                    res.statusCode = err.status || 500;
                     if (!res.writableEnded) res.end(err.message);
                     else log('warning', `middleware failed: ${err.message}`)
                 } else if (stack.length) {
-                    stack.shift().handle(req, res, next);
+                    let n = stack.shift();
+                    if (req.url.startsWith(n.path)) {
+                        let path_ = req.path.split('/');
+                        let path__ = n.path.split('/');
+                        while (path_[0] === path__[0]) {
+                            path_.shift();
+                            path__.shift();
+                        }
+                        if (path__.length === 0) {
+                            let path = '/' + path_.join('/');
+                            let old = req.url;
+                            req.url = path;
+                            n.handle(req, res, next);
+                            req.url = old;
+                        }
+                    }
                 } else {
                     engine.events.middlewareFinished.fire(req, res, webEngine);
                 }
