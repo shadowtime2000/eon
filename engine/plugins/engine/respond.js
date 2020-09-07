@@ -3,11 +3,11 @@ class ResponsePlugin {
 
     apply(engine) {
         engine.events.middlewareFinished.listen((engine, req, res, webEngine) => {
+            engine.globals.unresolved = undefined;
             if (!res.writeableEnded) {
                 // Get base path
                 const basePath = (new URL(req.url, `http://localhost:${webEngine.port}`));
                 // Resolve path
-                engine.globals.unresolved = undefined;
                 engine.events.resolvePath.fire(basePath, req, webEngine);
                 if (engine.globals.unresolved !== undefined) {
                     res.statusCode = 404;
