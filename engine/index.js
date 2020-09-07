@@ -32,6 +32,11 @@ class EonWebEngine extends Callable {
         return this.host.globals.next_path;
     }
 
+    use(path, callback) {
+        this.host.events.middleware.fire(path, callback, this);
+        return this;
+    }
+
     listen(callback) {
         this.host.events.listen.fire(callback, this);
     }

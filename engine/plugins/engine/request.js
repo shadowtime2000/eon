@@ -1,20 +1,13 @@
+const log = require('../../../libs/log')('eonjs', 'EON_LOGLEVEL');
+
 class HandlerPlugin {
-    constructor() {}
+    constructor() { }
 
     apply(engine) {
         engine.events.request.listen((engine, req, res, webEngine) => {
-            // Get base path
-            const basePath = (new URL(req.url, `http://localhost:${webEngine.port}`));
-            // Resolve path
-            engine.globals.unresolved = undefined;
-            engine.events.resolvePath.fire(basePath, req, webEngine);
-            if (engine.globals.unresolved !== undefined) {
-                res.statusCode = 404;
-                return res.end(`No ${req.method} path registered on ${req.url}`);
-            }
-            req.data = engine.globals.pathInfo;
-            engine.events.onBeforeRequest.fire(req, res, webEngine);
-            (async () => { engine.globals.path.invoke(req, res, webEngine.options.noParseBody); })();
+            log('verbose', 'invoking onBeforeResolution');
+            log('verbose', `res is ${res.writeableEnded ? 'closed' : 'open'}`);
+            engine.events.onBeforeResolution.fire(req, res, webEngine);
         });
     }
 }
