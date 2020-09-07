@@ -36,6 +36,8 @@ class MiddlewarePlugin {
                     else log('warning', `middleware failed: ${err.message}`)
                 } else if (engine.globals.middlewares.length) {
                     engine.globals.middlewares.shift().handle(req, res, next);
+                } else {
+                    engine.events.middlewareFinished.fire(req, res, webEngine);
                 }
             }
 
