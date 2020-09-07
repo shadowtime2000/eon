@@ -14,6 +14,7 @@ class Engine extends Pluggable {
         this.events.tearDown = new PlugEvent(this);
         this.events.middleware = new PlugEvent(this);
         this.events.onBeforeResolution = new PlugEvent(this);
+        this.events.middlewareFinished = new PlugEvent(this);
         plugins.map(p => this.registerPlug(p));
     }
 }
