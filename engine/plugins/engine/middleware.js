@@ -1,3 +1,5 @@
+const log = require('../../../libs/log')('eonjs', 'EON_LOGLEVEL');
+
 /**
  * This plugin simulates connect-like middleware in eon
  */
@@ -28,7 +30,8 @@ class MiddlewarePlugin {
             function next(err) {
                 if (err) {
                     res.statusCode = err.status || 500;
-                    res.end(err.message);
+                    if (!res.writableEnded) res.end(err.message);
+                    else log('warning', `middleware failed: ${err.message}`)
                 } else if (engine.globals.middlewares.length) {
                     engine.globals.middlewares.shift().handle(req, res, next);
                 }
