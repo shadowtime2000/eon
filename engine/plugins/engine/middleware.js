@@ -25,7 +25,7 @@ class MiddlewarePlugin {
         });
 
         engine.events.onBeforeResolution.listen((engine, req, res, webEngine) => {
-            engine.globals.middlewares = engine.globals.middlewares || [];
+            let stack = engine.globals.middlewares || [];
             log('verbose', 'onBeforeResolution invoked');
             log('verbose', `res is ${res.writeableEnded ? 'closed' : 'open'}`);
 
@@ -34,8 +34,8 @@ class MiddlewarePlugin {
                     res.statusCode = err.status || 500;
                     if (!res.writableEnded) res.end(err.message);
                     else log('warning', `middleware failed: ${err.message}`)
-                } else if (engine.globals.middlewares.length) {
-                    engine.globals.middlewares.shift().handle(req, res, next);
+                } else if (stack.length) {
+                    stack.shift().handle(req, res, next);
                 } else {
                     engine.events.middlewareFinished.fire(req, res, webEngine);
                 }
