@@ -16,7 +16,7 @@ class ResponsePlugin {
                 req.data = engine.globals.pathInfo;
                 engine.events.onBeforeRequest.fire(req, res, webEngine);
                 if (!res.writeableEnded)
-                    (async () => { engine.globals.path.invoke(req, res, webEngine.options.noParseBody); })();
+                    (async () => { engine.globals.path.invoke(req, res, webEngine.options); })();
             }
         });
     }

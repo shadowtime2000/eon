@@ -6,8 +6,8 @@ This function is the default export of the Eon library. It will create a new Eon
 Args:
 - `port:number` The port to listen on
 - `options:EonWebOptions` Additional options
-    - `options.post:PostOptions` Options for POST-like (POST, PUT, DELETE) requests
-        - `post.noParseBody:boolean` If this option is set to `true`, eon will **not** parse the request body. The body value will be equal to `IncomingHTTPData.rawBody`.
+    - `noParseBody:boolean` If this option is set to `true`, eon will **not** parse the request body. The body value will be equal to `req.rawBody`.
+    - `noUTF8Header:boolean` When set to `true`, the `.text()` and `.json()` handlers will not append `; charset=utf-8` to the `content-type` header.
 
 ## Class: `EonWebEngine extends Function`
 An instance of this class is created by `require('eon')(<port>)`. As of v1.14.0, this class is *callable*. You can pass it as a listener to http.createServer. ([see advanced docs](https://eon.js.org/#/advanced?id=own-server))
@@ -44,7 +44,7 @@ Returns: `void`
 A path listener
 
 ### `text(callback):EonWebEngine`
-When a request is received on this path, the text returned from `callback(req, res)` will be sent to the client.
+When a request is received on this path, the text returned from `callback(req, res)` will be sent to the client. Will automatically send `content-type: text/plain` header. Can be overriden by setting the header in the callback.
 
 Args:
 - `callback:function(req:IncomingHTTPData, res:OutgoingHTTPData)` The request handler
@@ -52,7 +52,7 @@ Args:
 Returns: `EonWebEngine` The Engine that created it.
 
 ### `json(callback):EonWebEngine`
-Like `Path.text()` but will run `JSON.stringify` on callback output before sending
+Like `Path.text()` but will run `JSON.stringify` on callback output before sending. Will automatically send `content-type: application/json` header. Can be overriden by setting the header in the callback.
 
 ### `hook(callback):EonWebEngine`
 Like `Path.text()`, but expects the callback to send data itsself

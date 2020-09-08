@@ -23,9 +23,9 @@ class GETPath {
         return this._engine;
     }
 
-    invoke(req, res, noParseBody) {
+    invoke(req, res, options) {
         if (this._handler == null) return res.end('Missing handler');
-        return this._handler.invoke(req, res, noParseBody);
+        return this._handler.invoke(req, res, options);
     }
 }
 
