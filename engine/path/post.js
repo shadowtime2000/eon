@@ -7,8 +7,8 @@ class POSTPath extends BasePath {
         })});
     }
 
-    invoke(req, res, noParseBody) {
-        super.invoke(req, res, noParseBody);
+    invoke(req, res, options) {
+        super.invoke(req, res, options);
     }
 }
 
