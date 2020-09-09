@@ -1,6 +1,6 @@
 {
   "name": "eonjs",
-  "version": "1.16.1",
+  "version": "1.16.1-community",
   "description": "A simple framework for creating web services",
   "main": "index.js",
   "scripts": {
@@ -22,5 +22,7 @@
     "url": "https://github.com/eon-web/eon/issues"
   },
   "homepage": "https://github.com/eon-web/eon#readme",
-  "dependencies": {}
+  "dependencies": {
+    "path-to-regexp": "^6.1.0"
+  }
 }

@@ -1,7 +1,10 @@
+
+const { pathToRegexp } = require('path-to-regexp');
+
 class PathResolvePlugin {
     constructor() {}
 
-    match(expr, path) {
+    /*match(expr, path) {
         // Syntax:
         // Basic: /foo/bar
         //          -> /foo/bar => true
@@ -52,7 +55,7 @@ class PathResolvePlugin {
             while (p.length > 0) pathInfo[captureKey].push(p.shift());
         }
         return pathInfo;
-    }
+    }*/
 
     apply(engine) {
         engine.events.resolvePath.listen((engine, basePath, req, webEngine) => {
@@ -61,9 +64,15 @@ class PathResolvePlugin {
             if (req.method == 'GET') paths = engine.globals._get_paths;
             if (req.method == 'POST') paths = engine.globals._post_paths;
             let keys = Object.keys(paths);
-            let match = keys.find(path => this.match(path, basePath.pathname));
+            let match = keys.find(path => pathToRegexp(path).exec(basePath.pathname));
             if (match === undefined) return (engine.globals.unresolved = true);
-            let pathInfo = this.resolve(match, basePath.pathname);
+            let pathkeys = [];
+            let matched = pathToRegexp(match, pathkeys).exec(basePath.pathname).slice(1);
+            let pathInfo = matched.reduce((a, v, i) => {
+                let o = a;
+                o[pathkeys[i].name] = v;
+                return o;
+            }, {});
             engine.globals.path = paths[match];
             engine.globals.pathInfo = pathInfo;
         });
