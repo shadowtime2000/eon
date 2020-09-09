@@ -21,7 +21,7 @@ class PathResolvePlugin {
         let matches = true;
         ex.forEach((s, i) => {
             if (pt[i] == s) return; // Matches, so far...
-            else if (s.startsWith(':') && pt[i] !== undefined) return; // Capture
+            else if (s.startsWith(':') && (pt[i] !== undefined && pt[i] !== "")) return; // Capture
             else if (captureAll) return; // Capture All
             else if (s.startsWith('^') && pt[i] !== undefined) return (captureAll = true);
             else return (matches = false);
@@ -38,14 +38,13 @@ class PathResolvePlugin {
         let pathInfo = {};
         ex.forEach((s, i) => {
             if (pt[i] == s) return; // Matches, so far...
-            else if (s.startsWith(':') && pt[i] !== undefined) return pathInfo[s.substr(1)] = pt[i];
+            else if (s.startsWith(':') && (pt[i] !== undefined && pt[i] !== "")) return pathInfo[s.substr(1)] = pt[i];
             else if (captureAll) return pathInfo[captureKey].push(pt[i]); // Capture All
             else if (s.startsWith('^') && pt[i] !== undefined){
                 captureAll = true;
                 captureKey = s.substr(1);
                 pathInfo[captureKey] = [pt[i]];
             }
-            else return (matches = false);
         });
         if (pt.length > ex.length && captureAll) {
             let p = pt.slice(ex.length);
