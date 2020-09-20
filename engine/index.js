@@ -22,6 +22,8 @@ class EonWebEngine extends Callable {
             } catch (error) {
                 log('error', `Failed to respond to request: ${req.url}`);
                 this._handle_error(error);
+                res.statusCode = 500;
+                if (!res.writeableEnded) { res.end(`Error: ${error.message}`) }
             }
         }
     }
