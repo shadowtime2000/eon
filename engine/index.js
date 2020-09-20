@@ -8,16 +8,33 @@ const EnginePlugins = require('./plugins/engine');
 class EonWebEngine extends Callable {
     constructor(port, options) {
         super();
-        let plugins = [...EnginePlugins, ...((options || {}).plugins || [])];
+        let plugins = [...EnginePlugins, ...((options || {}).plugins || [])];
         this.host = new Engine(plugins);
         this.host.globals._get_paths = {};
         this.host.globals._post_paths = {};
         this.port = port || process.env.PORT || 8080;
-        this.options = options || {};
-        
+        this.options = options || {};
+        this._onerror = [];
+
         this.listener = (req, res) => {
-            this.host.events.request.fire(req, res, this);
+            try {
+                this.host.events.request.fire(req, res, this);
+            } catch (error) {
+                log('error', `Failed to respond to request: ${req.url}`);
+                this._handle_error(error);
+            }
         }
+    }
+
+    errorHandler(callback) {
+        if (typeof callback === 'function') this._onerror.push(callback);
+        else throw 'Callback must be a function';
+        return this;
+    }
+
+    _handle_error(error) {
+        if (this._onerror.length === 0) throw error;
+        this._onerror.forEach(c => c(error, this));
     }
 
     get(path) {

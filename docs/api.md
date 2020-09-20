@@ -16,6 +16,12 @@ An instance of this class is created by `require('eon')(<port>)`. As of v1.14.0,
 Args:
 - `port:number` The port to listen on
 
+### `errorHandler(callback):EonWebEngine`
+The provided callback will be called if an error occurs during the handling of a request. If no callbacks are listed, the error will be thrown as normal.
+
+Args:
+- `callback:Function(error: Error [,engine: EonWebEngine])` Handle an error during request handling
+
 ### `get(path):Path`
 Registers a new GET listener on `path`.
 
