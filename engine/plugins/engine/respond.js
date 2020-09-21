@@ -21,6 +21,7 @@ class ResponsePlugin {
                 if (!res.writeableEnded)
                     (async () => { engine.globals.path.invoke(req, res, webEngine.options); })().catch((error) => {
                         log('error', `Failed to respond to request: ${req.url}`);
+                        log('error', `Error:`, error);
                         webEngine._handle_error(error);
                         res.statusCode = 500;
                         if (!res.writeableEnded) { res.end(`Error: ${error.message}`) }
