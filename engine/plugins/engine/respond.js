@@ -1,3 +1,6 @@
+
+const log = require('../libs/log')('eonjs', 'EON_LOGLEVEL');
+
 class ResponsePlugin {
     constructor() { }
 
@@ -16,7 +19,12 @@ class ResponsePlugin {
                 req.data = engine.globals.pathInfo;
                 engine.events.onBeforeRequest.fire(req, res, webEngine);
                 if (!res.writeableEnded)
-                    (async () => { engine.globals.path.invoke(req, res, webEngine.options); })();
+                    (async () => { engine.globals.path.invoke(req, res, webEngine.options); })().catch((error) => {
+                        log('error', `Failed to respond to request: ${req.url}`);
+                        webEngine._handle_error(error);
+                        res.statusCode = 500;
+                        if (!res.writeableEnded) { res.end(`Error: ${error.message}`) }
+                    });
             }
         });
     }
