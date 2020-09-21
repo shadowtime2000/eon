@@ -17,6 +17,8 @@ class PathResolvePlugin {
         //          -> / => true
         let ex = expr.split('/');
         let pt = path.split('/');
+        // trim trailing /
+        if (pt[pt.length - 1] === '') pt.pop();
         let captureAll = false;
         let matches = true;
         ex.forEach((s, i) => {
@@ -33,6 +35,8 @@ class PathResolvePlugin {
     resolve(expr, path) {
         let ex = expr.split('/');
         let pt = path.split('/');
+        // trim trailing /
+        if (pt[pt.length - 1] === '') pt.pop();
         let captureAll = false;
         let captureKey = '';
         let pathInfo = {};

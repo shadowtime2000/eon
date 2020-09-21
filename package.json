@@ -1,6 +1,6 @@
 {
   "name": "eonjs",
-  "version": "1.17.5",
+  "version": "1.17.6",
   "description": "A simple framework for creating web services",
   "main": "index.js",
   "scripts": {
