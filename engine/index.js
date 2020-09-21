@@ -35,8 +35,12 @@ class EonWebEngine extends Callable {
     }
 
     _handle_error(error) {
+        log('error', `handling error: ${error}`);
         if (this._onerror.length === 0) throw error;
-        this._onerror.forEach(c => {c(error, this)});
+        this._onerror.forEach(c => {
+            log('verbose', `calling callback for error: ${error}`);
+            c(error, this);
+        });
     }
 
     get(path) {
