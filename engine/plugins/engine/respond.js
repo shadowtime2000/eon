@@ -1,5 +1,5 @@
 
-const log = require('../libs/log')('eonjs', 'EON_LOGLEVEL');
+const log = require('../../../libs/log')('eonjs', 'EON_LOGLEVEL');
 
 class ResponsePlugin {
     constructor() { }
