@@ -3,7 +3,9 @@ const createLog = require('../../../../libs/log');
 const log = createLog('eonjs', 'EON_LOGLEVEL');
 
 class IncomingHTTPData {
-    constructor(req, noParseBody) {
+    constructor(req, noParseBody, engine, res) {
+        this.res = res;
+        this.engine = engine;
         this.whatwg = new URL(req.url, `http://${req.headers.host}`);
         this.data = req.data;
         this.method = req.method;
@@ -53,8 +55,16 @@ class IncomingHTTPData {
     }
 
     _fire(e, t, ...d) {
-        if (this._events[e]) this._events[e].forEach(l => l(...d));
-        if (t) this._fired.push(e);
+        try {
+            if (this._events[e]) this._events[e].forEach(l => l(...d));
+            if (t) this._fired.push(e);
+        } catch (error) {
+            if ((!this.engine) || (!this.res)) throw error;
+            log('error', `Failed to respond to request`);
+            log('error', `Error:`, error);
+            this.engine._handle_error(error);
+            if (!this.res.ended) { this.res.status(500).end(`Error: ${error.message}`) }
+        }
     }
 }
 

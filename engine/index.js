@@ -26,6 +26,7 @@ class EonWebEngine extends Callable {
                 if (!res.writeableEnded) { res.end(`Error: ${error.message}`) }
             }
         }
+        this._call = this.listener;
     }
 
     errorHandler(callback) {
