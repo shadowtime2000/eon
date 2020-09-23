@@ -62,7 +62,10 @@ class IncomingHTTPData {
             if ((!this.engine) || (!this.res)) throw error;
             log('error', `Failed to respond to request`);
             log('error', `Error:`, error);
-            this.engine._handle_error(error);
+            this.engine._handle_error(error,  {
+                url: this.url,
+                time: new Date()
+            });
             if (!this.res.ended) { this.res.status(500).end(`Error: ${error.message}`) }
         }
     }
