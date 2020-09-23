@@ -32,11 +32,11 @@ class IncomingHTTPData {
                             log('info', 'assumed request body is form');
                             this.body = require('querystring').parse(body || '');
                         }
-                        this._fire('body', true);
                     } catch (e) {
                         log('warning', `Error while parsing body '${body}': ${e.message}`);
                         this.error = e;
                     }
+                    this._fire('body', true);
                 } else {
                     log('info', 'not parsing body');
                     this.body = this.rawBody;
