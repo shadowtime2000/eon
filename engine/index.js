@@ -21,7 +21,10 @@ class EonWebEngine extends Callable {
                 this.host.events.request.fire(req, res, this);
             } catch (error) {
                 log('error', `Failed to respond to request: ${req.url}`);
-                this._handle_error(error);
+                this._handle_error(error, {
+                    url: req.url,
+                    time: new Date()
+                });
                 res.statusCode = 500;
                 if (!res.writeableEnded) { res.end(`Error: ${error.message}`) }
             }
@@ -35,12 +38,12 @@ class EonWebEngine extends Callable {
         return this;
     }
 
-    _handle_error(error) {
+    _handle_error(error, data) {
         log('error', `handling error: ${error}`);
         if (this._onerror.length === 0) throw error;
         this._onerror.forEach(c => {
             log('verbose', `calling callback for error: ${error}`);
-            c(error, this);
+            c(error, data, this);
         });
     }
 

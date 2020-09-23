@@ -20,7 +20,7 @@ Args:
 The provided callback will be called if an error occurs during the handling of a request. If no callbacks are listed, the error will be thrown as normal.
 
 Args:
-- `callback:Function(error: Error [,engine: EonWebEngine])` Handle an error during request handling
+- `callback:Function(error: Error [, data: Object [,engine: EonWebEngine]])` Handle an error during request handling
 
 ### `get(path):Path`
 Registers a new GET listener on `path`.
