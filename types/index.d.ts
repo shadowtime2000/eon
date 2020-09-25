@@ -6,10 +6,10 @@ declare class Callable extends Function {
 declare class EonWebEngine extends Callable {
   public port: number;
   public options: any;
-  private _onerror: ((err: any, data: any, engine: EonWebEngine) => void)[];
+  private _onerror: ((err: Error, data: any, engine: EonWebEngine) => void)[];
   constructor(port?: number, options?: any);
   errorHandler(
-    callback: (err: any, data: any, engine: EonWebEngine) => void
+    callback: (err: Error, data: any, engine: EonWebEngine) => void
   ): EonWebEngine;
   get(path: string): GETPath;
   post(path: string): POSTPath;
