@@ -4,6 +4,7 @@ declare class Callable extends Function {
 }
 
 declare class EonWebEngine extends Callable {
+  public host: Engine;
   public port: number;
   public options: { plugins: any[] };
   private _onerror: ((err: Error, data: any, engine: EonWebEngine) => void)[];
@@ -31,8 +32,8 @@ declare class IncomingHTTPData {
   public rawHeaders: string[];
   public url: string;
   public pathname: string;
-  public query: (any | undefined);
-  public body: (any | undefined);
+  public query: any | undefined;
+  public body: any | undefined;
   constructor(req: any, noParseBody: any, engine: EonWebEngine, res: any);
   on(event: string, listener: Function): void;
 }
@@ -109,4 +110,33 @@ declare class POSTPath extends GETPath {
     res: OutgoingHTTPData,
     options: { noParseBody: boolean; noUTF8Header: boolean }
   ): void;
+}
+
+declare class Engine extends Pluggable {
+  public events: any;
+  constructor(plugins: Pluggable[], options: any);
+}
+
+declare class Plug extends Callable {
+  constructor(options: any);
+  public _call(): void;
+  public apply(pluggable: Pluggable): void;
+}
+
+declare class Pluggable {
+  public events: any;
+  public globals: any;
+  public plugs: Plug[];
+  public options: any;
+  public registerPlug(p: Plug): void;
+  public register(event: string, listener: Function): void;
+}
+
+declare class PlugEvent {
+  hooks: Function[];
+  constructor(host: Pluggable);
+  listen(callback: (host: Pluggable, ...args: any) => void): void;
+  fire(...args: any): void;
+  asyncFire(snyc: boolean, ...args: any): void;
+  private _asyncCall(f: (...args: any) => void, ...args: any): void;
 }
