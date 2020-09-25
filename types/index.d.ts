@@ -5,9 +5,9 @@ declare class Callable extends Function {
 
 declare class EonWebEngine extends Callable {
   public port: number;
-  public options: any;
+  public options: { plugins: any[] };
   private _onerror: ((err: Error, data: any, engine: EonWebEngine) => void)[];
-  constructor(port?: number, options?: any);
+  constructor(port?: number, options?: { plugins: any[] });
   errorHandler(
     callback: (err: Error, data: any, engine: EonWebEngine) => void
   ): EonWebEngine;
