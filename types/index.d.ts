@@ -31,8 +31,8 @@ declare class IncomingHTTPData {
   public rawHeaders: string[];
   public url: string;
   public pathname: string;
-  public query: any;
-  public body: any;
+  public query: (any | undefined);
+  public body: (any | undefined);
   constructor(req: any, noParseBody: any, engine: EonWebEngine, res: any);
   on(event: string, listener: Function): void;
 }
