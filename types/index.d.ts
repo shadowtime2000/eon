@@ -22,7 +22,7 @@ declare class IncomingHTTPData {
   public whatwg: URL;
   public method: ("POST" | "GET"); // Only set to this because of current support
   public headers: any;
-  public rawHeaders: any;
+  public rawHeaders: string[];
   public url: string;
   public pathname: string;
   public query: any;
