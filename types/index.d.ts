@@ -19,16 +19,25 @@ declare function eonWebEngineFactory(port?: number, options?: any): EonWebEngine
 export = eonWebEngineFactory;
 
 declare class IncomingHTTPData {
+  public whatwg: URL;
+  public method: ("POST" | "GET"); // Only set to this because of current support
+  public headers: any;
+  public rawHeaders: any;
+  public url: string;
+  public pathname: string;
+  public query: any;
+  public body: any;
   constructor(req: any, noParseBody: any, engine: EonWebEngine, res: any);
-  on(event: any, listener: any): void;
+  on(event: string, listener: Function): void;
 }
 
 declare class OutgoingHTTPData {
+  public endend: boolean;
   constructor(res: any);
   status(n: number): OutgoingHTTPData;
   header(name: string, value: string): OutgoingHTTPData;
   getHeader(name: string): string;
-  write(data: any): OutgoingHTTPData;
+  write(data: string): OutgoingHTTPData;
   end(data: any): OutgoingHTTPData;
 }
 
