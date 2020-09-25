@@ -8,10 +8,10 @@ declare class EonWebEngine extends Callable {
   errorHandler(
     callback: (err: any, data: any, engine: EonWebEngine) => void
   ): EonWebEngine;
-  get(path: string): any;
-  post(path: string): any;
+  get(path: string): GETPath;
+  post(path: string): POSTPath;
   use(path: string, callback: Function): EonWebEngine;
-  listen(callback: Function);
+  listen(callback: Function): void;
 }
 
 declare function createWebEngine(port?: number, options?: any): EonWebEngine;
@@ -33,47 +33,47 @@ declare class OutgoingHTTPData {
 }
 
 declare class TextCallbackHandler {
-  constructor(callback: (req: any, res: any) => any);
+  constructor(callback: (req: IncomingHTTPData, res: OutgoingHTTPData) => any);
   invoke(
-    req: any,
-    res: any,
+    req: IncomingHTTPData,
+    res: OutgoingHTTPData,
     options: { noParseBody: boolean; noUTF8Header: boolean }
   ): void;
 }
 
 declare class JSONCallbackHandler extends TextCallbackHandler {
   invoke(
-    req: any,
-    res: any,
+    req: IncomingHTTPData,
+    res: OutgoingHTTPData,
     options: { noParseBody: boolean; noUTF8Header: boolean }
   ): void;
 }
 
 declare class HookCallbackHandler extends TextCallbackHandler {
   invoke(
-    req: any,
-    res: any,
+    req: IncomingHTTPData,
+    res: OutgoingHTTPData,
     options: { noParseBody: boolean; noUTF8Header: boolean }
   ): void;
 }
 
 declare class GETPath {
   constructor(engine: EonWebEngine);
-  text(callback: (req: any, res: any) => any): EonWebEngine;
-  hook(callback: (req: any, res: any) => any): EonWebEngine;
-  json(callback: (req: any, res: any) => any): EonWebEngine;
+  text(callback: (req: IncomingHTTPData, res: OutgoingHTTPData) => any): EonWebEngine;
+  hook(callback: (req: IncomingHTTPData, res: OutgoingHTTPData) => any): EonWebEngine;
+  json(callback: (req: IncomingHTTPData, res: OutgoingHTTPData) => any): EonWebEngine;
   invoke(
-    req: any,
-    res: any,
+    req: IncomingHTTPData,
+    res: OutgoingHTTPData,
     options: { noParseBody: boolean; noUTF8Header: boolean }
   ): void;
 }
 
 declare class POSTPath extends GETPath {
-  onBody(callback: (req: any, res: any) => any): EonWebEngine;
+  onBody(callback: (req: IncomingHTTPData, res: OutgoingHTTPData) => any): EonWebEngine;
   invoke(
-    req: any,
-    res: any,
+    req: IncomingHTTPData,
+    res: OutgoingHTTPData,
     options: { noParseBody: boolean; noUTF8Header: boolean }
   ): void;
 }
