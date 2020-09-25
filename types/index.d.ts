@@ -14,6 +14,10 @@ declare class EonWebEngine extends Callable {
   listen(callback: Function);
 }
 
+declare function createWebEngine(port?: number, options?: any): EonWebEngine;
+
+export = createWebEngine;
+
 declare class IncomingHTTPData {
   constructor(req: any, noParseBody: any, engine: EonWebEngine, res: any);
   on(e: any, L: any): void;

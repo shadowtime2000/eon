@@ -46,6 +46,9 @@ const app = eon(8080);
 app.get('/').json((req, res) => ({hello: 'world', how_are: 'you?'}));
 ```
 
+## Typescript
+This framework has Typescript typings bundled with it.
+
 # API
 API referenece. **Please Refer to the full documentation at [eon.js.org](https://eon.js.org/#/)**
 

@@ -3,6 +3,7 @@
   "version": "1.17.10",
   "description": "A simple framework for creating web services",
   "main": "index.js",
+  "types": "./types/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
