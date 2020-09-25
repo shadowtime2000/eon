@@ -20,7 +20,7 @@ export = eonWebEngineFactory;
 
 declare class IncomingHTTPData {
   constructor(req: any, noParseBody: any, engine: EonWebEngine, res: any);
-  on(e: any, L: any): void;
+  on(event: any, listener: any): void;
 }
 
 declare class OutgoingHTTPData {
