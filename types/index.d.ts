@@ -4,6 +4,9 @@ declare class Callable extends Function {
 }
 
 declare class EonWebEngine extends Callable {
+  public port: number;
+  public options: any;
+  private _onerror: ((err: any, data: any, engine: EonWebEngine) => void)[];
   constructor(port?: number, options?: any);
   errorHandler(
     callback: (err: any, data: any, engine: EonWebEngine) => void
@@ -14,13 +17,16 @@ declare class EonWebEngine extends Callable {
   listen(callback: Function): void;
 }
 
-declare function eonWebEngineFactory(port?: number, options?: any): EonWebEngine;
+declare function eonWebEngineFactory(
+  port?: number,
+  options?: any
+): EonWebEngine;
 
 export = eonWebEngineFactory;
 
 declare class IncomingHTTPData {
   public whatwg: URL;
-  public method: ("POST" | "GET"); // Only set to this because of current support
+  public method: "POST" | "GET"; // Only set to this because of current support
   public headers: any;
   public rawHeaders: string[];
   public url: string;
@@ -42,6 +48,7 @@ declare class OutgoingHTTPData {
 }
 
 declare class TextCallbackHandler {
+  public callback: (req: IncomingHTTPData, res: OutgoingHTTPData) => any;
   constructor(callback: (req: IncomingHTTPData, res: OutgoingHTTPData) => any);
   invoke(
     req: IncomingHTTPData,
@@ -68,9 +75,24 @@ declare class HookCallbackHandler extends TextCallbackHandler {
 
 declare class GETPath {
   constructor(engine: EonWebEngine);
-  text(callback: (req: IncomingHTTPData, res: OutgoingHTTPData) => TextCallbackHandler): EonWebEngine;
-  hook(callback: (req: IncomingHTTPData, res: OutgoingHTTPData) => HookCallbackHandler): EonWebEngine;
-  json(callback: (req: IncomingHTTPData, res: OutgoingHTTPData) => JSONCallbackHandler): EonWebEngine;
+  text(
+    callback: (
+      req: IncomingHTTPData,
+      res: OutgoingHTTPData
+    ) => TextCallbackHandler
+  ): EonWebEngine;
+  hook(
+    callback: (
+      req: IncomingHTTPData,
+      res: OutgoingHTTPData
+    ) => HookCallbackHandler
+  ): EonWebEngine;
+  json(
+    callback: (
+      req: IncomingHTTPData,
+      res: OutgoingHTTPData
+    ) => JSONCallbackHandler
+  ): EonWebEngine;
   invoke(
     req: IncomingHTTPData,
     res: OutgoingHTTPData,
@@ -79,7 +101,9 @@ declare class GETPath {
 }
 
 declare class POSTPath extends GETPath {
-  onBody(callback: (req: IncomingHTTPData, res: OutgoingHTTPData) => any): EonWebEngine;
+  onBody(
+    callback: (req: IncomingHTTPData, res: OutgoingHTTPData) => any
+  ): EonWebEngine;
   invoke(
     req: IncomingHTTPData,
     res: OutgoingHTTPData,
