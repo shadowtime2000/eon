@@ -1,3 +1,5 @@
+const log = require('../../../libs/log')('eonjs', 'EON_LOGLEVEL');
+
 class PathResolvePlugin {
     constructor() {}
 
@@ -18,7 +20,7 @@ class PathResolvePlugin {
         let ex = expr.split('/');
         let pt = path.split('/');
         // trim trailing /
-        if (pt[pt.length - 1] === '') pt.pop();
+        if (pt[pt.length - 1] === '' && ex[ex.length - 1] !== '') pt.pop();
         let captureAll = false;
         let matches = true;
         ex.forEach((s, i) => {
@@ -64,7 +66,10 @@ class PathResolvePlugin {
             if (req.method == 'GET') paths = engine.globals._get_paths;
             if (req.method == 'POST') paths = engine.globals._post_paths;
             let keys = Object.keys(paths);
+            log('silly', 'resolving path', basePath.pathname);
+            log('silly', 'from', keys);
             let match = keys.find(path => this.match(path, basePath.pathname));
+            log('silly', 'found', match);
             if (match === undefined) return (engine.globals.unresolved = true);
             let pathInfo = this.resolve(match, basePath.pathname);
             engine.globals.path = paths[match];
