@@ -122,7 +122,7 @@ An outgoing HTTP response. Passed as second argument to request handlers
 ### field: `endend:boolean`
 Wether the stream has been closed
 
-### `status(code):OutgoingHTTPData`
+### `status(code):this`
 Sets the response status
 
 Args:
@@ -130,7 +130,7 @@ Args:
 
 Returns: `OutgoingHTTPData` The object it was called on
 
-### `header(name, value):OutgoingHTTPData`
+### `header(name, value):this`
 Sets a response header
 
 Args:
@@ -147,7 +147,7 @@ Args:
 
 Returns `string` The value of the header
 
-### `write(data):OutgoingHTTPData`
+### `write(data):this`
 Sends data to the client
 
 Args:
@@ -155,7 +155,22 @@ Args:
 
 Returns: `OutgoingHTTPData` The object it was called on
 
-### `end(data):OutgoingHTTPData`
+### `end(data):this`
 Like `write()` but will close the stream
 
 Returns: `OutgoingHTTPData` The object it was called on
+
+### `cookie(name, value[, options]):this`
+Sets the Set-Cookie header.
+
+Args:
+- `name:string` The name of the cookie
+- `value:string` The value of the cookie
+- `options:CookieOptions` some options:
+    - `expires:Date` Expiration Date
+    - `max_age:number` Seconds to expiration
+    - `path:string` Value for the `Path` attribute
+    - `domain:string` Value for the `Domain` attribute
+    - `same_site:string` Value for `SameSite` attribute
+    - `secure:boolean` Whether to add the `; Secure` attribute
+    - `HttpOnly:boolean` Whether to add the `; HttpOnly` attribute
