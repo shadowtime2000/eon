@@ -17,10 +17,9 @@ class IncomingHTTPData {
         this.pathname = this.whatwg.pathname;
         this._events = {};
         this._fired = [];
-        if (req.method == 'GET') {
-            this.query = {};
-            this.whatwg.searchParams.forEach((val, key) => this.query[key] = val);
-        } else {
+        this.query = {};
+        this.whatwg.searchParams.forEach((val, key) => this.query[key] = val);
+        if (req.method === 'POST') {
             let body = "";
             req.on('data', d => body += d.toString());
             req.on('end', _ => {
