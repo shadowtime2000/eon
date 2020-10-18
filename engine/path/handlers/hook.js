@@ -6,7 +6,7 @@ class HookCallbackHandler extends BaseHandler {
         const Res = new OutgoingHTTPData(res);
         const Req = new IncommingHTTPData(req, options.noParseBody, options.engine, Res);
         if (Req.error) return res.writeHead(400).end('Invalid request: ' + Req.error.message);
-        this.callback(Req, Res);
+        return this.callback(Req, Res);
     }
 }
 
