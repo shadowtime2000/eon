@@ -68,9 +68,9 @@ declare namespace eon {
 
   class GETPath {
 		constructor(engine: EonWebEngine);
-		text(callback: (req: IncomingHTTPData, res: OutgoingHTTPData) => TextCallbackHandler): EonWebEngine;
-		hook(callback: (req: IncomingHTTPData, res: OutgoingHTTPData) => HookCallbackHandler): EonWebEngine;
-		json(callback: (req: IncomingHTTPData, res: OutgoingHTTPData) => JSONCallbackHandler): EonWebEngine;
+		text(callback: (req: IncomingHTTPData, res: OutgoingHTTPData) => string): EonWebEngine;
+		hook(callback: (req: IncomingHTTPData, res: OutgoingHTTPData) => any): EonWebEngine;
+		json(callback: (req: IncomingHTTPData, res: OutgoingHTTPData) => any): EonWebEngine;
 		invoke(
 			req: IncomingHTTPData,
 			res: OutgoingHTTPData,

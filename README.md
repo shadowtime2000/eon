@@ -23,7 +23,7 @@ A simple framework for creating web services
 Yes, another web server framework. Whenever a new one comes out, you have to ask yourself: Do I need this? Am I fine to just continue using express/fastify/etc...? I want to present to you the reasons why I began writing this framework and hopefully make your decision a bit easier.
 
 ### Express is _not_ a small framework
-Express is great, because it provides lots of features, but that also makes it a quite large library. With Eon, I tried to reduce the bundle size by writing as much code as possible on my own and adding only the neccessary features.
+Express is great, because it provides lots of features, but that also makes it a quite large library. With Eon, I tried to reduce the bundle size by writing as much code as possible on my own and adding only the necessary features.
 
 ### 0 Dependencies
 As of `v1.11.x`, Eon.js has *no dependencies whatsoever*, thereby further reducing the bundle size and overhead of additional packages to manage.
@@ -53,7 +53,7 @@ This framework has Typescript typings bundled with it.
 API referenece. **Please Refer to the full documentation at [eon.js.org](https://eon.js.org/#/)**
 
 ## Plugins API
-**New In v1.15**: Version 1.15 introduces the new Plugins API. I decided to take the time, rather sooner than later, to rewrite Eon into an "everythings-a-plugin" type of system. The full Plugin docs will be available soon at [eon.js.org](https://eon.js.org).
+**New In v1.15**: Version 1.15 introduces the new Plugins API. I decided to take the time, rather sooner than later, to rewrite Eon into an "everything's-a-plugin" type of system. The full Plugin docs will be available soon at [eon.js.org](https://eon.js.org).
 
 ### `eon(port): EonWebEngine`
 This function is the default export of the Eon library. It will create a new EonWebEngine instance.
@@ -104,7 +104,7 @@ Returns: `EonWebEngine` The Engine that created it.
 Like `Path.text()` but will run `JSON.stringify` on callback output before sending
 
 ### `hook(callback):EonWebEngine`
-Like `Path.text()`, but expects the callback to send data itsself
+Like `Path.text()`, but expects the callback to send data itself
 
 Args:
 - `callback:function(req:IncomingHTTPData, res:OutgoingHTTPData)` The request handler
