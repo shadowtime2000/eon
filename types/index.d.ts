@@ -25,7 +25,8 @@ declare namespace eon {
 		public url: string;
 		public pathname: string;
 		public query: any | undefined;
-		public body: any | undefined;
+    public body: any | undefined;
+    public data: any | undefined;
 		constructor(req: any, noParseBody: any, engine: EonWebEngine, res: any);
 		on(event: string, listener: Function): void;
   }
