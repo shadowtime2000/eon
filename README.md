@@ -1,4 +1,4 @@
-<h1 align="center">Eon.js</h1>
+<h1 align="center" style="font-size: 4em; font-weight: 700;">Eon.js</h1>
 <p align="center">
 A simple framework for creating web services
 </p>
