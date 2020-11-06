@@ -19,12 +19,12 @@ class IncomingHTTPData {
         this._fired = [];
         this.query = {};
         this.whatwg.searchParams.forEach((val, key) => this.query[key] = val);
-        if (req.method === 'POST') {
+        if (req.method === 'POST' || req.method === 'PUT') {
             let body = "";
             req.on('data', d => body += d.toString());
             req.on('end', _ => {
                 this.rawBody = body;
-                if (!noParseBody) {
+                if (!noParseBody && (req.method !== 'PUT')) {
                     try {
                         if (req.headers['content-type'] === 'application/json') {
                             log('info', 'request body is json');
