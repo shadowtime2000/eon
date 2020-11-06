@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | <%=posts.config.blogName%></title>
+    <link rel="stylesheet" href="/index.css" />
+    <link rel="stylesheet" href="/docs/assets/prism.css" />
+    <%const marked = require('marked')%>
+    <%const html = require('html-format')%>
+</head>
+
+<body>
+    <header>
+        <div class="left">
+            <img src="/docs/assets/logo.svg" alt="Logo" id="logo" />
+            <nav>
+                <% posts.config.navLinks.forEach(function (link) { %>
+                <a href="<%= link.href %>"><%= link.text %></a>
+                <% }); %>
+            </nav>
+        </div>
+    </header>
+    <aside>
+        <% posts.sort((a, b) => a.attributes.number - b.attributes.number).forEach(function (post) { %>
+            <a href="/docs/<%= post.path %>"><%= post.attributes.title %>: <%=post.attributes.number%></a>
+        <% }); %>
+    </aside>
+    <main>
+        <div class="markdown-section">
+            
+        </div>
+    </main>
+
+    <script>
+        window.location.href="/docs/introduction";
+    </script>
+</body>
+
+</html>

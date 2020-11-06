@@ -1,3 +1,9 @@
+---
+title: 'Advanced Samples'
+number: 2
+---
+
+
 # Advanced Examples
 Here are some more advanced examples to help you up your game more quickly
 

@@ -1,3 +1,8 @@
+---
+title: 'Introduction'
+number: 1
+---
+
 # Eon.js
 A simple framework for creating web services
 
@@ -29,4 +34,4 @@ app.get('/').json((req, res) => ({hello: 'world', how_are: 'you?'}));
 ```
 
 # TypeScript
-As of `v1.18.0`, eon.js contains typings bundled with it.
+As of `v1.18.0`, eon.js contains typings bundled with it.e

@@ -1,3 +1,8 @@
+---
+title: 'Debugging'
+number: 3
+---
+
 # Debugging
 Debugging, especially of server-side code, can be very frustrating. With this guide, I hope to make your life a bit easier.
 

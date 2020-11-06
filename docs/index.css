@@ -1,0 +1,114 @@
+:root {
+  --col-blue: #0595FD;
+  --col-blue-rgb: 5, 149, 253;
+  --col-darkblue: #035ADD;
+  --col-teal: #03DDD0;
+  --col-black: rgb(55, 55, 71);
+  --col-bg: #FFFFFF;
+  --col-fg: var(--col-black);
+  /* Shadows */
+  --shadow-blue-light: 0px 10px 20px rgba(var(--col-blue-rgb), 0.6);
+  --shadow-blue-dark: 0px 10px 20px rgba(var(--col-blue-rgb), 0.2);
+  --shadow-blue: var(--shadow-blue-light);
+}
+
+body.dark {
+  --col-bg: var(--col-black);
+  --col-fg: #FFFFFF;
+  --shadow-blue: var(--shadow-blue-dark) ;
+}
+
+* {
+  color: var(--col-fg);
+  box-sizing: border-box;
+  font-family: system-ui, sans-serif;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  width: 200vw;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+header {
+  z-index: 100;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 5.6rem;
+  box-shadow: rgba(2, 8, 20, 0.06) 0px 1px 3px, rgba(2, 8, 20, 0.04) 0px 1px 2px;
+  padding: 0rem 2rem;
+}
+header div.left {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+header nav a {
+  transition: opacity 300ms;
+  color: var(--col-fg);
+  opacity: 0.5;
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 2rem;
+}
+header nav a:hover {
+  opacity: 1;
+}
+header #logo {
+  height: 70% !important;
+  margin-right: 2rem;
+}
+
+aside {
+  position: fixed;
+  left: 0;
+  top: 5.6rem;
+  overflow: auto;
+  word-wrap: break-word;
+  width: 200px;
+  height: calc(100vh - 5.6rem);
+  border-right: 1px solid #edf2f6;
+  padding: 3rem 2rem;
+}
+aside a {
+  color: #a8b6c2;
+  font-size: 1.3rem;
+  font-weight: 400;
+  text-decoration: none;
+  padding: 1rem;
+  border-radius: 2px;
+  display: block;
+}
+aside a:nth-child(0) {
+  display: none;
+}
+
+main {
+  position: absolute;
+  left: 200px;
+  top: 5.6rem;
+  width: calc(100vw - 200px);
+  min-height: calc(100vh - 5.6rem);
+  padding: 2rem 4rem;
+  padding-top: 0rem;
+  padding-bottom: 4rem !important;
+  font-size: 1.6rem;
+}
+main h1.title {
+  font-size: 6rem;
+}
+main a {
+  color: #1e90ff;
+}
+main * {
+  line-height: 1.7;
+}
