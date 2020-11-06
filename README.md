@@ -1,6 +1,9 @@
 <h1 align="center" style="font-size: 4em; font-weight: 700;">Eon.js</h1>
 <p align="center">
-A simple framework for creating web services
+<b>A simple framework for creating web services</b>
+</p>
+<p align="center">
+>_ Writing servers should be easy
 </p>
 <p align="center">
 <img src="https://res.cloudinary.com/db3degzpn/image/upload/v1604679393/social_new_rl1m2v.png" width="100%" height="auto">
