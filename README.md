@@ -3,7 +3,7 @@
 A simple framework for creating web services
 </p>
 <p align="center">
-<img src="https://res.cloudinary.com/db3degzpn/image/upload/v1599479042/cover_spor65.png" width="100%" height="auto">
+<img src="https://res.cloudinary.com/db3degzpn/image/upload/v1604679393/social_new_rl1m2v.png" width="100%" height="auto">
 </p>
 <p align="center"><img src="https://img.shields.io/npm/v/eonjs" alt="version badge">
 <img src="https://img.shields.io/npm/l/eonjs" alt="license badge">
@@ -50,7 +50,7 @@ app.get('/').json((req, res) => ({hello: 'world', how_are: 'you?'}));
 This framework has Typescript typings bundled with it.
 
 # API
-API referenece. **Please Refer to the full documentation at [eon.js.org](https://eon.js.org/#/)**
+API reference. **Please Refer to the full documentation at [eon.js.org](https://eon.js.org/#/)**
 
 ## Plugins API
 **New In v1.15**: Version 1.15 introduces the new Plugins API. I decided to take the time, rather sooner than later, to rewrite Eon into an "everything's-a-plugin" type of system. The full Plugin docs will be available soon at [eon.js.org](https://eon.js.org).
