@@ -1,8 +1,7 @@
 :root {
-  --col-blue: #0595FD;
-  --col-blue-rgb: 5, 149, 253;
-  --col-darkblue: #035ADD;
-  --col-teal: #03DDD0;
+  --col-blue: #1FFF93;
+  --col-blue-rgb: 31, 255, 147;
+  --col-teal: #1FC9FF;
   --col-black: rgb(55, 55, 71);
   --col-bg: #FFFFFF;
   --col-fg: var(--col-black);

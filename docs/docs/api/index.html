@@ -47,7 +47,7 @@
     <main>
         <h1 class="title">Core API</h1>
         <h1 id="api">API</h1>
-<p>API referenece.</p>
+<p>API reference.</p>
 <h3 id="eonport--options-eonwebengine"><code>eon(port [, options]): EonWebEngine</code></h3>
 <p>This function is the default export of the Eon library. It will create a new EonWebEngine instance.
 Args:</p>
@@ -86,6 +86,13 @@ Args:</p>
 <li><code>path:string</code> The pathname to register the listener on. Examples: <code>&quot;/&quot;</code>, <code>&quot;/test&quot;</code></li>
 </ul>
 <p>Returns: <code>POSTPath extends Path</code></p>
+<h3 id="putpathpath"><code>put(path):Path</code></h3>
+<p>Registers a new PUT listener on <code>path</code>. The returned object will <strong>not</strong> have the <code>text</code> and <code>json</code> methods, but is otherwise like <a href="#class:-postpath-extends-path"><code>POSTPath</code></a></p>
+<p>Args:</p>
+<ul>
+<li><code>path:string</code> The pathname to register the listener on. Examples: <code>&quot;/&quot;</code>, <code>&quot;/test&quot;</code></li>
+</ul>
+<p>Returns: <code>PUTPath extends Path</code></p>
 <h3 id="listencallbackvoid"><code>listen([callback]):void</code></h3>
 <p>Listens on the port specified by the constructor.</p>
 <p>Args:</p>
@@ -96,16 +103,16 @@ Args:</p>
 <h2 id="class-path">Class: <code>Path</code></h2>
 <p>A path listener</p>
 <h3 id="textcallbackeonwebengine"><code>text(callback):EonWebEngine</code></h3>
-<p>When a request is received on this path, the text returned from <code>callback(req, res)</code> will be sent to the client. Will automatically send <code>content-type: text/plain</code> header. Can be overriden by setting the header in the callback.</p>
+<p>When a request is received on this path, the text returned from <code>callback(req, res)</code> will be sent to the client. Will automatically send <code>content-type: text/plain</code> header. Can be overridden by setting the header in the callback.</p>
 <p>Args:</p>
 <ul>
 <li><code>callback:function(req:IncomingHTTPData, res:OutgoingHTTPData)</code> The request handler</li>
 </ul>
 <p>Returns: <code>EonWebEngine</code> The Engine that created it.</p>
 <h3 id="jsoncallbackeonwebengine"><code>json(callback):EonWebEngine</code></h3>
-<p>Like <code>Path.text()</code> but will run <code>JSON.stringify</code> on callback output before sending. Will automatically send <code>content-type: application/json</code> header. Can be overriden by setting the header in the callback.</p>
+<p>Like <code>Path.text()</code> but will run <code>JSON.stringify</code> on callback output before sending. Will automatically send <code>content-type: application/json</code> header. Can be overridden by setting the header in the callback.</p>
 <h3 id="hookcallbackeonwebengine"><code>hook(callback):EonWebEngine</code></h3>
-<p>Like <code>Path.text()</code>, but expects the callback to send data itsself</p>
+<p>Like <code>Path.text()</code>, but expects the callback to send data itself</p>
 <p>Args:</p>
 <ul>
 <li><code>callback:function(req:IncomingHTTPData, res:OutgoingHTTPData)</code> The request handler</li>
@@ -139,14 +146,14 @@ Args:</p>
 <p>Fired on POST-like requests after the body is received and parsed</p>
 <p>Arguments to handler: none</p>
 <h3 id="onevent-handler"><code>on(event, handler)</code></h3>
-<p>Register an event handler. Multiple handlers can be registed for one event. <strong>Handlers cannot be unregistered</strong></p>
+<p>Register an event handler. Multiple handlers can be registered for one event. <strong>Handlers cannot be unregistered</strong></p>
 <p>Args:</p>
 <ul>
 <li><code>event:string</code> Name of the event to listen for</li>
 <li><code>handler:function(...args)</code> The handler to call when the event is fired</li>
 </ul>
 <h2 id="class-outgoinghttpdata">Class: <code>OutgoingHTTPData</code></h2>
-<p>An outgoing HTTP response. Passed as second argument to request handlers</p>
+<p>An outgoing HTTP response. Passed as the second argument to request handlers</p>
 <h3 id="field-endendboolean">field: <code>endend:boolean</code></h3>
 <p>Wether the stream has been closed</p>
 <h3 id="statuscodethis"><code>status(code):this</code></h3>
