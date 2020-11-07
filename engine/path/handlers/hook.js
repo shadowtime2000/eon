@@ -3,7 +3,7 @@ const { IncommingHTTPData, OutgoingHTTPData } = require('./streams');
 
 class HookCallbackHandler extends BaseHandler {
     invoke(req, res, options) {
-        const Res = new OutgoingHTTPData(res, options.noResponse);
+        const Res = new OutgoingHTTPData(res, options.noResponse, options.onlyHead);
         const Req = new IncommingHTTPData(req, options.noParseBody, options.engine, Res);
         if (Req.error) return res.writeHead(400).end('Invalid request: ' + Req.error.message);
         return this.callback(Req, Res);

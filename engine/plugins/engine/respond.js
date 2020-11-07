@@ -21,7 +21,7 @@ class ResponsePlugin {
                 engine.events.onBeforeRequest.fire(req, res, webEngine);
                 log('verbose', 'invoking');
                 if (!res.writeableEnded)
-                    (async () => await Promise.resolve(engine.globals.path.invoke(req, res, webEngine.options)) )().catch((error) => {
+                    (async () => await Promise.resolve(engine.globals.path.invoke(req, res, { ...webEngine.options,  onlyHead: engine.globals.only_head })) )().catch((error) => {
                         log('error', `Failed to respond to request: ${req.url}`);
                         log('error', `Error:`, error);
                         webEngine._handle_error(error, {
