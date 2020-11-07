@@ -34,4 +34,4 @@ app.get('/').json((req, res) => ({hello: 'world', how_are: 'you?'}));
 ```
 
 # TypeScript
-As of `v1.18.0`, eon.js contains typings bundled with it.e
+As of `v1.18.0`, eon.js contains typings bundled with it.
