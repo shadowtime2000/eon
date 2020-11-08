@@ -63,8 +63,14 @@ class PathResolvePlugin {
         engine.events.resolvePath.listen((engine, basePath, req, webEngine) => {
             let paths;
             engine.globals.unresolved = undefined;
+            engine.globals.only_head = false;
             if (req.method == 'GET') paths = engine.globals._get_paths;
+            if (req.method == 'HEAD') {
+                paths = engine.globals._get_paths;
+                engine.globals.only_head = true;
+            }
             if (req.method == 'POST') paths = engine.globals._post_paths;
+            if (req.method == 'PUT') paths = engine.globals._put_paths;
             let keys = Object.keys(paths);
             log('silly', 'resolving path', basePath.pathname);
             log('silly', 'from', keys);
@@ -74,6 +80,8 @@ class PathResolvePlugin {
             let pathInfo = this.resolve(match, basePath.pathname);
             engine.globals.path = paths[match];
             engine.globals.pathInfo = pathInfo;
+            log('silly', 'path', engine.globals.path);
+            log('silly', 'pathI', engine.globals.pathInfo);
         });
     }
 }
