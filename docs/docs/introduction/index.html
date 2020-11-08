@@ -15,38 +15,51 @@
 <body>
     <header>
         <div class="left">
-            <img src="/docs/assets/logo.svg" alt="Logo" id="logo" />
+            <button id="hamburger"><img src="/docs/assets/icons/menu/hamburger.svg" alt="menu"></button>
+            <img src="/docs/assets/logo-no-border.svg" alt="Logo" id="logo" />
             <nav>
                 
-                <a href="/">Home</a>
+                    <a href="/" class="">Home</a>
                 
-                <a href="/about">About</a>
+                    <a href="/docs" class="selected">Docs</a>
                 
-                <a href="https://github.com/eon-web/eon">GitHub</a>
+                    <a href="https://github.com/eon-web/eon" class="">GitHub</a>
                 
-                <a href="">Contact</a>
+                    <a href="" class="">Contact</a>
                 
             </nav>
         </div>
     </header>
     <aside>
         
-            <a href="/docs/dummy"></a>
         
-            <a href="/docs/introduction">Introduction</a>
+            <h3 class="group-name">Getting Started</h3>
+            
+                <a href="/docs/introduction ">Introduction</a>
+            
+                <a href="/docs/getting_started ">Your first server</a>
+            
         
-            <a href="/docs/advanced">Advanced Samples</a>
+            <h3 class="group-name">Advanced</h3>
+            
+                <a href="/docs/advanced ">Advanced Samples</a>
+            
+                <a href="/docs/debugging ">Debugging</a>
+            
         
-            <a href="/docs/debugging">Debugging</a>
-        
-            <a href="/docs/api">Core API</a>
-        
-            <a href="/docs/plugins">Plugins API</a>
+            <h3 class="group-name">API</h3>
+            
+                <a href="/docs/api ">Core API</a>
+            
+                <a href="/docs/plugins ">Plugins API</a>
+            
         
     </aside>
     <main>
-        <h1 class="title">Introduction</h1>
-        <h1 id="eonjs">Eon.js</h1>
+        <div class="body">
+            <h1 class="title">Introduction</h1>
+            <p class="description">Eon.js is a web server framework with 0 dependencies</p>
+            <h1 id="eonjs">Eon.js</h1>
 <p>A simple framework for creating web services</p>
 <h2 id="why-eon">Why Eon?</h2>
 <p>Yes, another web server framework. Whenever a new one comes out, you have to ask yourself: Do I need this? Am I fine to just continue using express/fastify/etc...? I want to present to you the reasons why I began writing this framework and hopefully make your decision a bit easier.</p>
@@ -67,6 +80,8 @@
 app<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">{</span>hello<span class="token operator">:</span> <span class="token string">'world'</span><span class="token punctuation">,</span> how_are<span class="token operator">:</span> <span class="token string">'you?'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><h1 id="typescript">TypeScript</h1>
 <p>As of <code>v1.18.0</code>, eon.js contains typings bundled with it.</p>
 
+        </div>
+        <div class="col-right"></div>
     </main>
 </body>
 

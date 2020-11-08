@@ -15,38 +15,51 @@
 <body>
     <header>
         <div class="left">
-            <img src="/docs/assets/logo.svg" alt="Logo" id="logo" />
+            <button id="hamburger"><img src="/docs/assets/icons/menu/hamburger.svg" alt="menu"></button>
+            <img src="/docs/assets/logo-no-border.svg" alt="Logo" id="logo" />
             <nav>
                 
-                <a href="/">Home</a>
+                    <a href="/" class="">Home</a>
                 
-                <a href="/about">About</a>
+                    <a href="/docs" class="selected">Docs</a>
                 
-                <a href="https://github.com/eon-web/eon">GitHub</a>
+                    <a href="https://github.com/eon-web/eon" class="">GitHub</a>
                 
-                <a href="">Contact</a>
+                    <a href="" class="">Contact</a>
                 
             </nav>
         </div>
     </header>
     <aside>
         
-            <a href="/docs/dummy"></a>
         
-            <a href="/docs/introduction">Introduction</a>
+            <h3 class="group-name">Getting Started</h3>
+            
+                <a href="/docs/introduction ">Introduction</a>
+            
+                <a href="/docs/getting_started ">Your first server</a>
+            
         
-            <a href="/docs/advanced">Advanced Samples</a>
+            <h3 class="group-name">Advanced</h3>
+            
+                <a href="/docs/advanced ">Advanced Samples</a>
+            
+                <a href="/docs/debugging ">Debugging</a>
+            
         
-            <a href="/docs/debugging">Debugging</a>
-        
-            <a href="/docs/api">Core API</a>
-        
-            <a href="/docs/plugins">Plugins API</a>
+            <h3 class="group-name">API</h3>
+            
+                <a href="/docs/api ">Core API</a>
+            
+                <a href="/docs/plugins ">Plugins API</a>
+            
         
     </aside>
     <main>
-        <h1 class="title">Plugins API</h1>
-        <h1 id="plugins">Plugins</h1>
+        <div class="body">
+            <h1 class="title">Plugins API</h1>
+            <p class="description"></p>
+            <h1 id="plugins">Plugins</h1>
 <p>In version v1.15.0, I decided to re-write most of the <code>EonWebEngine</code> into an &quot;everything&#39;s-a-plugin&quot; system. This doesn&#39;t change most of the actual API, but it gives developers much more control over what happens internally.</p>
 <h2 id="creating-plugins">Creating Plugins</h2>
 <p>A plugin is just a class like any other, with the only requirement being the <code>apply</code> method. This method is passed the <code>pluggable</code>, an instance that has different <em>events</em> that a plugin can plug into. Take this example:</p>
@@ -73,6 +86,8 @@
 <li><code>onBeforeRequest</code>: Like <code>request</code>, but fired <strong>before</strong> the asynchronous dispatchment of the user-provided request handler.</li>
 </ul>
 
+        </div>
+        <div class="col-right"></div>
     </main>
 </body>
 

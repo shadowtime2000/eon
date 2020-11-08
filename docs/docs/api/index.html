@@ -15,38 +15,51 @@
 <body>
     <header>
         <div class="left">
-            <img src="/docs/assets/logo.svg" alt="Logo" id="logo" />
+            <button id="hamburger"><img src="/docs/assets/icons/menu/hamburger.svg" alt="menu"></button>
+            <img src="/docs/assets/logo-no-border.svg" alt="Logo" id="logo" />
             <nav>
                 
-                <a href="/">Home</a>
+                    <a href="/" class="">Home</a>
                 
-                <a href="/about">About</a>
+                    <a href="/docs" class="selected">Docs</a>
                 
-                <a href="https://github.com/eon-web/eon">GitHub</a>
+                    <a href="https://github.com/eon-web/eon" class="">GitHub</a>
                 
-                <a href="">Contact</a>
+                    <a href="" class="">Contact</a>
                 
             </nav>
         </div>
     </header>
     <aside>
         
-            <a href="/docs/dummy"></a>
         
-            <a href="/docs/introduction">Introduction</a>
+            <h3 class="group-name">Getting Started</h3>
+            
+                <a href="/docs/introduction ">Introduction</a>
+            
+                <a href="/docs/getting_started ">Your first server</a>
+            
         
-            <a href="/docs/advanced">Advanced Samples</a>
+            <h3 class="group-name">Advanced</h3>
+            
+                <a href="/docs/advanced ">Advanced Samples</a>
+            
+                <a href="/docs/debugging ">Debugging</a>
+            
         
-            <a href="/docs/debugging">Debugging</a>
-        
-            <a href="/docs/api">Core API</a>
-        
-            <a href="/docs/plugins">Plugins API</a>
+            <h3 class="group-name">API</h3>
+            
+                <a href="/docs/api ">Core API</a>
+            
+                <a href="/docs/plugins ">Plugins API</a>
+            
         
     </aside>
     <main>
-        <h1 class="title">Core API</h1>
-        <h1 id="api">API</h1>
+        <div class="body">
+            <h1 class="title">Core API</h1>
+            <p class="description"></p>
+            <h1 id="api">API</h1>
 <p>API reference.</p>
 <h3 id="eonport--options-eonwebengine"><code>eon(port [, options]): EonWebEngine</code></h3>
 <p>This function is the default export of the Eon library. It will create a new EonWebEngine instance.
@@ -206,6 +219,8 @@ Args:</p>
 </li>
 </ul>
 
+        </div>
+        <div class="col-right"></div>
     </main>
 </body>
 
