@@ -15,22 +15,31 @@
 <body>
     <header>
         <div class="left">
-            <img src="/docs/assets/logo.svg" alt="Logo" id="logo" />
+            <button id="hamburger"><img src="/docs/assets/icons/menu/hamburger.svg" alt="menu"></button>
+            <img src="/docs/assets/logo-no-border.svg" alt="Logo" id="logo" />
             <nav>
-                <% posts.config.navLinks.forEach(function (link) { %>
-                <a href="<%= link.href %>"><%= link.text %></a>
-                <% }); %>
+                <% posts.config.navLinks.forEach(function (link) { if (link.text) { %>
+                    <a href="<%= link.href %>" class="<%- link.href === '/docs' ? 'selected' : ''%>"><%= link.text %></a>
+                <% } }); %>
             </nav>
         </div>
     </header>
     <aside>
-        <% for ( let post_ of posts.sort((a, b) => a.attributes.number - b.attributes.number)) { %>
-            <a href="/docs/<%= post_.path %>"><%= post_.attributes.title %></a>
+        <% const groups = posts.sort((a, b) => a.attributes.number - b.attributes.number).reduce((acc, val) => { if(!val.attributes.title) return acc; if (acc[val.attributes.group]) acc[val.attributes.group].push(val); else acc[val.attributes.group] = [val]; return acc}, {}) %>
+        <% for (let group in groups) {%>
+            <h3 class="group-name"><%= group %></h3>
+            <% groups[group].forEach(post => {%>
+                <a href="/docs/<%= post.path %> %>"><%= post.attributes.title %></a>
+            <% }) %>
         <% } %>
     </aside>
     <main>
-        <h1 class="title"><%= post.attributes.title %></h1>
-        <%- post.body %>
+        <div class="body">
+            <h1 class="title"><%= post.attributes.title %></h1>
+            <p class="description"><%= post.attributes.description %></p>
+            <%- post.body %>
+        </div>
+        <div class="col-right"></div>
     </main>
 </body>
 

@@ -1,6 +1,7 @@
 ---
 title: 'Advanced Samples'
-number: 2
+number: 3
+group: 'Advanced'
 ---
 
 

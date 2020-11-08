@@ -1,6 +1,7 @@
 ---
 title: 'Plugins API'
-number: 5
+number: 6
+group: 'API'
 ---
 
 # Plugins

@@ -19,8 +19,8 @@ const config = {
             text: 'Home'
         },
         {
-            href: '/about',
-            text: 'About'
+            href: '/docs',
+            text: 'Docs'
         },
         {
             href: 'https://github.com/eon-web/eon',
