@@ -12,6 +12,7 @@ class EonWebEngine extends Callable {
         this.host = new Engine(plugins);
         this.host.globals._get_paths = {};
         this.host.globals._post_paths = {};
+        this.host.globals._put_paths = {};
         this.port = port || process.env.PORT || 8080;
         this.options = options || {};
         this._onerror = [];
@@ -56,6 +57,12 @@ class EonWebEngine extends Callable {
     post(path) {
         this.host.events.create.fire('post', path, this);
         this.host.globals._post_paths[path] = (this.host.globals.next_path);
+        return this.host.globals.next_path;
+    }
+
+    put(path) {
+        this.host.events.create.fire('put', path, this);
+        this.host.globals._put_paths[path] = (this.host.globals.next_path);
         return this.host.globals.next_path;
     }
 

@@ -1,7 +1,13 @@
+const log = require('../../../../libs/log')('eonjs', 'EON_LOGLEVEL');
+
 class OutgoingHTTPData {
-    constructor(res) {
+    constructor(res, immutable, onlyHead) {
+        log('silly','created OutgoingHTTPData');
         this.res = res;
         this.ended = false;
+        this.immutable = immutable;
+        this.onlyHead = onlyHead;
+        log('silly', 'immutable?', immutable);
     }
 
     status(n) { this.res.statusCode = n; return this; };
@@ -12,9 +18,9 @@ class OutgoingHTTPData {
 
     getHeader(name) { return this.res.getHeader(name) };
 
-    write(data) { this.res.write(data); return this; };
+    write(data) { if (!this.onlyHead) this.res.write(data); return this; };
 
-    end(data) { this.res.end(data); this.ended = true; return this; };
+    end(data) { log('verbose', 'response ended'); if (data && this.immutable) { throw new Error(`Cannot respond to PUT or HEAD requests`) }; this.res.end(this.onlyHead ? undefined : data); this.ended = true; return this; };
 }
 
 module.exports = OutgoingHTTPData;

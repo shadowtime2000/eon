@@ -1,6 +1,7 @@
 const TextCallbackHandler = require('./handlers/text');
 const HookCallbackHandler = require('./handlers/hook');
 const JSONCallbackHandler = require('./handlers/json');
+const log = require('../../libs/log')('eonjs', 'EON_LOGLEVEL');
 
 class GETPath {
     constructor(engine) {
@@ -23,9 +24,10 @@ class GETPath {
         return this._engine;
     }
 
-    invoke(req, res, options) {
+    invoke(req, res, options, noResponse) {
+        log('silly', 'handler invoked')
         if (this._handler == null) return res.end('Missing handler');
-        return this._handler.invoke(req, res, { engine: this._engine, ...options });
+        return this._handler.invoke(req, res, { engine: this._engine, noResponse, ...options });
     }
 }
 

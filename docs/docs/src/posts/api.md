@@ -1,5 +1,11 @@
+---
+title: 'Core API'
+number: 5
+group: 'API'
+---
+
 # API
-API referenece.
+API reference.
 
 ### `eon(port [, options]): EonWebEngine`
 This function is the default export of the Eon library. It will create a new EonWebEngine instance.
@@ -38,6 +44,14 @@ Args:
 
 Returns: `POSTPath extends Path`
 
+### `put(path):Path`
+Registers a new PUT listener on `path`. The returned object will **not** have the `text` and `json` methods, but is otherwise like [`POSTPath`](#class:-postpath-extends-path)
+
+Args:
+- `path:string` The pathname to register the listener on. Examples: `"/"`, `"/test"`
+
+Returns: `PUTPath extends Path`
+
 ### `listen([callback]):void`
 Listens on the port specified by the constructor.
 
@@ -50,7 +64,7 @@ Returns: `void`
 A path listener
 
 ### `text(callback):EonWebEngine`
-When a request is received on this path, the text returned from `callback(req, res)` will be sent to the client. Will automatically send `content-type: text/plain` header. Can be overriden by setting the header in the callback.
+When a request is received on this path, the text returned from `callback(req, res)` will be sent to the client. Will automatically send `content-type: text/plain` header. Can be overridden by setting the header in the callback.
 
 Args:
 - `callback:function(req:IncomingHTTPData, res:OutgoingHTTPData)` The request handler
@@ -58,10 +72,10 @@ Args:
 Returns: `EonWebEngine` The Engine that created it.
 
 ### `json(callback):EonWebEngine`
-Like `Path.text()` but will run `JSON.stringify` on callback output before sending. Will automatically send `content-type: application/json` header. Can be overriden by setting the header in the callback.
+Like `Path.text()` but will run `JSON.stringify` on callback output before sending. Will automatically send `content-type: application/json` header. Can be overridden by setting the header in the callback.
 
 ### `hook(callback):EonWebEngine`
-Like `Path.text()`, but expects the callback to send data itsself
+Like `Path.text()`, but expects the callback to send data itself
 
 Args:
 - `callback:function(req:IncomingHTTPData, res:OutgoingHTTPData)` The request handler
@@ -110,14 +124,14 @@ Fired on POST-like requests after the body is received and parsed
 Arguments to handler: none
 
 ### `on(event, handler)`
-Register an event handler. Multiple handlers can be registed for one event. **Handlers cannot be unregistered**
+Register an event handler. Multiple handlers can be registered for one event. **Handlers cannot be unregistered**
 
 Args:
 - `event:string` Name of the event to listen for
 - `handler:function(...args)` The handler to call when the event is fired
 
 ## Class: `OutgoingHTTPData`
-An outgoing HTTP response. Passed as second argument to request handlers
+An outgoing HTTP response. Passed as the second argument to request handlers
 
 ### field: `endend:boolean`
 Wether the stream has been closed

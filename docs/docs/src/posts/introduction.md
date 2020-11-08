@@ -1,3 +1,10 @@
+---
+title: 'Introduction'
+description: 'Eon.js is a web server framework with 0 dependencies'
+number: 1
+group: 'Getting Started'
+---
+
 # Eon.js
 A simple framework for creating web services
 

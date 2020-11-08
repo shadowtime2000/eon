@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plugins API | Eon.js Docs</title>
+    <link rel="stylesheet" href="/index.css" />
+    <link rel="stylesheet" href="/docs/assets/prism.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+    
+    
+</head>
+
+<body>
+    <header>
+        <div class="left">
+            <img src="/docs/assets/logo.svg" alt="Logo" id="logo" />
+            <nav>
+                
+                <a href="/">Home</a>
+                
+                <a href="/about">About</a>
+                
+                <a href="https://github.com/eon-web/eon">GitHub</a>
+                
+                <a href="">Contact</a>
+                
+            </nav>
+        </div>
+    </header>
+    <aside>
+        
+            <a href="/docs/dummy"></a>
+        
+            <a href="/docs/introduction">Introduction</a>
+        
+            <a href="/docs/advanced">Advanced Samples</a>
+        
+            <a href="/docs/debugging">Debugging</a>
+        
+            <a href="/docs/api">Core API</a>
+        
+            <a href="/docs/plugins">Plugins API</a>
+        
+    </aside>
+    <main>
+        <h1 class="title">Plugins API</h1>
+        <h1 id="plugins">Plugins</h1>
+<p>In version v1.15.0, I decided to re-write most of the <code>EonWebEngine</code> into an &quot;everything&#39;s-a-plugin&quot; system. This doesn&#39;t change most of the actual API, but it gives developers much more control over what happens internally.</p>
+<h2 id="creating-plugins">Creating Plugins</h2>
+<p>A plugin is just a class like any other, with the only requirement being the <code>apply</code> method. This method is passed the <code>pluggable</code>, an instance that has different <em>events</em> that a plugin can plug into. Take this example:</p>
+<pre data-lang="js"><code><span class="token keyword">class</span> <span class="token class-name">MyPlugin</span> <span class="token punctuation">{</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+    <span class="token function">apply</span><span class="token punctuation">(</span><span class="token parameter">pluggable</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        pluggable<span class="token punctuation">.</span>events<span class="token punctuation">.</span>onBeforeRequest<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">pluggable<span class="token punctuation">,</span> req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> webEngine</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Received a request to </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>req<span class="token punctuation">.</span>url<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">.</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre><p>This simple plugin plugs into the <code>onBeforeRequest</code> event. This is fired immediately before the request handler is invoked, but after the request has been received and the correct handler has been resolved. Also, the <code>req</code> and <code>res</code> arguments are the raw <code>IncommingMessage</code> and <code>ServerResponse</code> created by HTTP, not the <code>IncommingHTTPData</code> and <code>OutgoingHTTPData</code> classes passed to the listener.</p>
+<h2 id="applying-a-plugin">Applying a plugin</h2>
+<p>To actually add a plugin to the <code>EonWebEngine</code>, you can pass eon a configuration object, like so:</p>
+<pre data-lang="js"><code><span class="token keyword">const</span> eon <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'eonjs'</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">8080</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    plugins<span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token keyword">new</span> <span class="token class-name">MyPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>When <code>null</code> or <code>undefined</code> are passed as the first argument, eon will fall back to <code>process.env.PORT</code> if available, otherwise <code>8080</code>.</p>
+<h2 id="available-events">Available Events</h2>
+<ul>
+<li><code>resolvePath</code>: Called first when a request is received. This event is a callout to resolve a <code>Path</code> object. Because there is an internal plugin, the path will already have been resolved when other plugins are called. If successfull, <code>pluggable.globals.path</code> will be set to the resolved path, otherwise <code>pluggable.globals.unresolved</code> will be set to true. If you have own logic to resolve paths, <strong>make sure to set</strong> <code>pluggable.globals.unresolved</code> <strong>to</strong> <code>undefined</code>, so that no &quot;invalid request&quot; response will be sent, or to <code>true</code> if your logic, too, failed.</li>
+<li><code>request</code>: Internally, this event is triggered before <code>reolvePath</code>, but an internal plugin fires <code>resolvePath</code> before other plugins can act on <code>request</code>. Other plugins on the <code>request</code> event will be fired directly after the <strong><em>aynchronous</em> dispatchment</strong> of the user-provided request handler, so the handler may, or may not, be running at the execution of your plugin.</li>
+<li><code>onBeforeRequest</code>: Like <code>request</code>, but fired <strong>before</strong> the asynchronous dispatchment of the user-provided request handler.</li>
+</ul>
+
+    </main>
+</body>
+
+</html>

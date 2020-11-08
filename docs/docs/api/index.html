@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Core API | Eon.js Docs</title>
+    <link rel="stylesheet" href="/index.css" />
+    <link rel="stylesheet" href="/docs/assets/prism.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+    
+    
+</head>
+
+<body>
+    <header>
+        <div class="left">
+            <img src="/docs/assets/logo.svg" alt="Logo" id="logo" />
+            <nav>
+                
+                <a href="/">Home</a>
+                
+                <a href="/about">About</a>
+                
+                <a href="https://github.com/eon-web/eon">GitHub</a>
+                
+                <a href="">Contact</a>
+                
+            </nav>
+        </div>
+    </header>
+    <aside>
+        
+            <a href="/docs/dummy"></a>
+        
+            <a href="/docs/introduction">Introduction</a>
+        
+            <a href="/docs/advanced">Advanced Samples</a>
+        
+            <a href="/docs/debugging">Debugging</a>
+        
+            <a href="/docs/api">Core API</a>
+        
+            <a href="/docs/plugins">Plugins API</a>
+        
+    </aside>
+    <main>
+        <h1 class="title">Core API</h1>
+        <h1 id="api">API</h1>
+<p>API reference.</p>
+<h3 id="eonport--options-eonwebengine"><code>eon(port [, options]): EonWebEngine</code></h3>
+<p>This function is the default export of the Eon library. It will create a new EonWebEngine instance.
+Args:</p>
+<ul>
+<li><code>port:number</code> The port to listen on</li>
+<li><code>options:EonWebOptions</code> Additional options<ul>
+<li><code>noParseBody:boolean</code> If this option is set to <code>true</code>, eon will <strong>not</strong> parse the request body. The body value will be equal to <code>req.rawBody</code>.</li>
+<li><code>noUTF8Header:boolean</code> When set to <code>true</code>, the <code>.text()</code> and <code>.json()</code> handlers will not append <code>; charset=utf-8</code> to the <code>content-type</code> header.</li>
+</ul>
+</li>
+</ul>
+<h2 id="class-eonwebengine-extends-function">Class: <code>EonWebEngine extends Function</code></h2>
+<p>An instance of this class is created by <code>require(&#39;eon&#39;)(&lt;port&gt;)</code>. As of v1.14.0, this class is <em>callable</em>. You can pass it as a listener to http.createServer. (<a href="https://eon.js.org/#/advanced?id=own-server">see advanced docs</a>)</p>
+<h3 id="constructor"><code>constructor</code></h3>
+<p>Args:</p>
+<ul>
+<li><code>port:number</code> The port to listen on</li>
+</ul>
+<h3 id="errorhandlercallbackeonwebengine"><code>errorHandler(callback):EonWebEngine</code></h3>
+<p>The provided callback will be called if an error occurs during the handling of a request. If no callbacks are listed, the error will be thrown as normal.</p>
+<p>Args:</p>
+<ul>
+<li><code>callback:Function(error: Error [, data: Object [,engine: EonWebEngine]])</code> Handle an error during request handling</li>
+</ul>
+<h3 id="getpathpath"><code>get(path):Path</code></h3>
+<p>Registers a new GET listener on <code>path</code>.</p>
+<p>Args:</p>
+<ul>
+<li><code>path:string</code> The pathname to register the listener on. Examples: <code>&quot;/&quot;</code>, <code>&quot;/test&quot;</code></li>
+</ul>
+<p>Returns: <code>GETPath extends Path</code></p>
+<h3 id="postpathpath"><code>post(path):Path</code></h3>
+<p>Registers a new POST listener on <code>path</code>.</p>
+<p>Args:</p>
+<ul>
+<li><code>path:string</code> The pathname to register the listener on. Examples: <code>&quot;/&quot;</code>, <code>&quot;/test&quot;</code></li>
+</ul>
+<p>Returns: <code>POSTPath extends Path</code></p>
+<h3 id="putpathpath"><code>put(path):Path</code></h3>
+<p>Registers a new PUT listener on <code>path</code>. The returned object will <strong>not</strong> have the <code>text</code> and <code>json</code> methods, but is otherwise like <a href="#class:-postpath-extends-path"><code>POSTPath</code></a></p>
+<p>Args:</p>
+<ul>
+<li><code>path:string</code> The pathname to register the listener on. Examples: <code>&quot;/&quot;</code>, <code>&quot;/test&quot;</code></li>
+</ul>
+<p>Returns: <code>PUTPath extends Path</code></p>
+<h3 id="listencallbackvoid"><code>listen([callback]):void</code></h3>
+<p>Listens on the port specified by the constructor.</p>
+<p>Args:</p>
+<ul>
+<li><code>callback?:function(port)</code> (optional) Will be called once the server is listening. Arguments: The port the server is listening on.</li>
+</ul>
+<p>Returns: <code>void</code></p>
+<h2 id="class-path">Class: <code>Path</code></h2>
+<p>A path listener</p>
+<h3 id="textcallbackeonwebengine"><code>text(callback):EonWebEngine</code></h3>
+<p>When a request is received on this path, the text returned from <code>callback(req, res)</code> will be sent to the client. Will automatically send <code>content-type: text/plain</code> header. Can be overridden by setting the header in the callback.</p>
+<p>Args:</p>
+<ul>
+<li><code>callback:function(req:IncomingHTTPData, res:OutgoingHTTPData)</code> The request handler</li>
+</ul>
+<p>Returns: <code>EonWebEngine</code> The Engine that created it.</p>
+<h3 id="jsoncallbackeonwebengine"><code>json(callback):EonWebEngine</code></h3>
+<p>Like <code>Path.text()</code> but will run <code>JSON.stringify</code> on callback output before sending. Will automatically send <code>content-type: application/json</code> header. Can be overridden by setting the header in the callback.</p>
+<h3 id="hookcallbackeonwebengine"><code>hook(callback):EonWebEngine</code></h3>
+<p>Like <code>Path.text()</code>, but expects the callback to send data itself</p>
+<p>Args:</p>
+<ul>
+<li><code>callback:function(req:IncomingHTTPData, res:OutgoingHTTPData)</code> The request handler</li>
+</ul>
+<p>Returns: <code>EonWebEngine</code> The Engine that created it.</p>
+<h2 id="class-postpath-extends-path">Class: <code>POSTPath extends Path</code></h2>
+<p>Like <code>Path</code>, but with some methods that are specific to POST, PUT, etc requests.</p>
+<h3 id="onbodycallbackeonwebengine"><code>onBody(callback):EonWebEngine</code></h3>
+<p>Like <code>Path.hook()</code>, but will wait until the request body is available. When the callback is invoked, <code>req.body</code> can be used.</p>
+<h2 id="class-incominghttpdata">Class: <code>IncomingHTTPData</code></h2>
+<p>An incoming HTTP request</p>
+<h3 id="field-whatwgurl">field: <code>whatwg:URL</code></h3>
+<p>A parsed <code>URL</code> object (<a href="https://nodejs.org/api/url.html#url_url_strings_and_url_objects">see nodejs URL docs</a>)</p>
+<h3 id="field-methodstring">field: <code>method:string</code></h3>
+<p>The request method (&#39;GET&#39;, &#39;POST&#39;, &#39;PUT&#39;, etc..)</p>
+<h3 id="field-headersobject">field: <code>headers:object</code></h3>
+<p>The request headers (<a href="https://nodejs.org/api/http.html#http_message_headers">see nodejs http docs</a>)</p>
+<h3 id="field-rawheadersobject">field: <code>rawHeaders:object</code></h3>
+<p>The unprocessed request headers (<a href="https://nodejs.org/api/http.html#http_message_rawheaders">see nodejs http docs</a>)</p>
+<h3 id="field-urlstring">field: <code>url:string</code></h3>
+<p>The full request url, without protocol and host. Example: <code>/p/a/t/h?name=john&amp;lastname=doe#info</code></p>
+<h3 id="field-pathnamestring">field: <code>pathname:string</code></h3>
+<p>alias for <code>IncomingHTTPData.whatwg.pathname</code></p>
+<h3 id="field-queryobject">field: <code>query:object</code></h3>
+<p>The parsed querystring (Only available for GET requests)</p>
+<h3 id="field-bodyobject">field: <code>body:object</code></h3>
+<p>The parsed post/put body (Only available for Non-GET requests <strong>after the</strong> <code>body</code> <strong>event has fired</strong>). If the Engine&#39;s <code>noParseBody</code> option is set, this will be equal to <code>rawBody</code></p>
+<h3 id="field-rawbodystring">field: <code>rawBody:string</code></h3>
+<p>The unparsed post/put body.</p>
+<h3 id="event-body">event: <code>body</code></h3>
+<p>Fired on POST-like requests after the body is received and parsed</p>
+<p>Arguments to handler: none</p>
+<h3 id="onevent-handler"><code>on(event, handler)</code></h3>
+<p>Register an event handler. Multiple handlers can be registered for one event. <strong>Handlers cannot be unregistered</strong></p>
+<p>Args:</p>
+<ul>
+<li><code>event:string</code> Name of the event to listen for</li>
+<li><code>handler:function(...args)</code> The handler to call when the event is fired</li>
+</ul>
+<h2 id="class-outgoinghttpdata">Class: <code>OutgoingHTTPData</code></h2>
+<p>An outgoing HTTP response. Passed as the second argument to request handlers</p>
+<h3 id="field-endendboolean">field: <code>endend:boolean</code></h3>
+<p>Wether the stream has been closed</p>
+<h3 id="statuscodethis"><code>status(code):this</code></h3>
+<p>Sets the response status</p>
+<p>Args:</p>
+<ul>
+<li><code>code:number</code> The status code to send</li>
+</ul>
+<p>Returns: <code>OutgoingHTTPData</code> The object it was called on</p>
+<h3 id="headername-valuethis"><code>header(name, value):this</code></h3>
+<p>Sets a response header</p>
+<p>Args:</p>
+<ul>
+<li><code>name:string</code> The name of the header</li>
+<li><code>value:string</code> The value of the header</li>
+</ul>
+<p>Returns: <code>OutgoingHTTPData</code> The object it was called on</p>
+<h3 id="getheadernamestring"><code>getHeader(name):string</code></h3>
+<p>Returns the value of a header</p>
+<p>Args:</p>
+<ul>
+<li><code>name:string</code> The name of the header to retrieve</li>
+</ul>
+<p>Returns <code>string</code> The value of the header</p>
+<h3 id="writedatathis"><code>write(data):this</code></h3>
+<p>Sends data to the client</p>
+<p>Args:</p>
+<ul>
+<li><code>data:string</code> The data to write</li>
+</ul>
+<p>Returns: <code>OutgoingHTTPData</code> The object it was called on</p>
+<h3 id="enddatathis"><code>end(data):this</code></h3>
+<p>Like <code>write()</code> but will close the stream</p>
+<p>Returns: <code>OutgoingHTTPData</code> The object it was called on</p>
+<h3 id="cookiename-value-optionsthis"><code>cookie(name, value[, options]):this</code></h3>
+<p>Sets the Set-Cookie header.</p>
+<p>Args:</p>
+<ul>
+<li><code>name:string</code> The name of the cookie</li>
+<li><code>value:string</code> The value of the cookie</li>
+<li><code>options:CookieOptions</code> some options:<ul>
+<li><code>expires:Date</code> Expiration Date</li>
+<li><code>max_age:number</code> Seconds to expiration</li>
+<li><code>path:string</code> Value for the <code>Path</code> attribute</li>
+<li><code>domain:string</code> Value for the <code>Domain</code> attribute</li>
+<li><code>same_site:string</code> Value for <code>SameSite</code> attribute</li>
+<li><code>secure:boolean</code> Whether to add the <code>; Secure</code> attribute</li>
+<li><code>HttpOnly:boolean</code> Whether to add the <code>; HttpOnly</code> attribute</li>
+</ul>
+</li>
+</ul>
+
+    </main>
+</body>
+
+</html>

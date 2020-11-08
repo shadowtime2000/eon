@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introduction | Eon.js Docs</title>
+    <link rel="stylesheet" href="/index.css" />
+    <link rel="stylesheet" href="/docs/assets/prism.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+    
+    
+</head>
+
+<body>
+    <header>
+        <div class="left">
+            <img src="/docs/assets/logo.svg" alt="Logo" id="logo" />
+            <nav>
+                
+                <a href="/">Home</a>
+                
+                <a href="/about">About</a>
+                
+                <a href="https://github.com/eon-web/eon">GitHub</a>
+                
+                <a href="">Contact</a>
+                
+            </nav>
+        </div>
+    </header>
+    <aside>
+        
+            <a href="/docs/dummy"></a>
+        
+            <a href="/docs/introduction">Introduction</a>
+        
+            <a href="/docs/advanced">Advanced Samples</a>
+        
+            <a href="/docs/debugging">Debugging</a>
+        
+            <a href="/docs/api">Core API</a>
+        
+            <a href="/docs/plugins">Plugins API</a>
+        
+    </aside>
+    <main>
+        <h1 class="title">Introduction</h1>
+        <h1 id="eonjs">Eon.js</h1>
+<p>A simple framework for creating web services</p>
+<h2 id="why-eon">Why Eon?</h2>
+<p>Yes, another web server framework. Whenever a new one comes out, you have to ask yourself: Do I need this? Am I fine to just continue using express/fastify/etc...? I want to present to you the reasons why I began writing this framework and hopefully make your decision a bit easier.</p>
+<h3 id="express-is-not-a-small-framework">Express is <em>not</em> a small framework</h3>
+<p>Express is great because it provides lots of features, but that also makes it a quite large library. With Eon, I tried to reduce the bundle size by writing as much code as possible on my own and adding only the necessary features.</p>
+<h3 id="0-dependencies">0 Dependencies</h3>
+<p>As of <code>v1.11.x</code>, Eon.js has <em>no dependencies whatsoever</em>, thereby further reducing the bundle size and overhead of additional packages to manage.</p>
+<h1 id="installation">Installation</h1>
+<p>To install eon, simply run</p>
+<pre data-lang="bash"><code><span class="token function">npm</span> i eonjs@latest --save</code></pre><h1 id="examples--usage">Examples &amp; Usage</h1>
+<p>Here is an example of using Eon:</p>
+<pre data-lang="js"><code><span class="token comment">// Require Eon</span>
+<span class="token keyword">const</span> eon <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'eonjs'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Create App</span>
+<span class="token comment">// Shorthand: const app = require('eonjs')(8080);</span>
+<span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token function">eon</span><span class="token punctuation">(</span><span class="token number">8080</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Create a get path</span>
+app<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">{</span>hello<span class="token operator">:</span> <span class="token string">'world'</span><span class="token punctuation">,</span> how_are<span class="token operator">:</span> <span class="token string">'you?'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><h1 id="typescript">TypeScript</h1>
+<p>As of <code>v1.18.0</code>, eon.js contains typings bundled with it.</p>
+
+    </main>
+</body>
+
+</html>
