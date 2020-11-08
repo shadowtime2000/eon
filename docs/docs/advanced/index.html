@@ -15,38 +15,51 @@
 <body>
     <header>
         <div class="left">
-            <img src="/docs/assets/logo.svg" alt="Logo" id="logo" />
+            <button id="hamburger"><img src="/docs/assets/icons/menu/hamburger.svg" alt="menu"></button>
+            <img src="/docs/assets/logo-no-border.svg" alt="Logo" id="logo" />
             <nav>
                 
-                <a href="/">Home</a>
+                    <a href="/" class="">Home</a>
                 
-                <a href="/about">About</a>
+                    <a href="/docs" class="selected">Docs</a>
                 
-                <a href="https://github.com/eon-web/eon">GitHub</a>
+                    <a href="https://github.com/eon-web/eon" class="">GitHub</a>
                 
-                <a href="">Contact</a>
+                    <a href="" class="">Contact</a>
                 
             </nav>
         </div>
     </header>
     <aside>
         
-            <a href="/docs/dummy"></a>
         
-            <a href="/docs/introduction">Introduction</a>
+            <h3 class="group-name">Getting Started</h3>
+            
+                <a href="/docs/introduction ">Introduction</a>
+            
+                <a href="/docs/getting_started ">Your first server</a>
+            
         
-            <a href="/docs/advanced">Advanced Samples</a>
+            <h3 class="group-name">Advanced</h3>
+            
+                <a href="/docs/advanced ">Advanced Samples</a>
+            
+                <a href="/docs/debugging ">Debugging</a>
+            
         
-            <a href="/docs/debugging">Debugging</a>
-        
-            <a href="/docs/api">Core API</a>
-        
-            <a href="/docs/plugins">Plugins API</a>
+            <h3 class="group-name">API</h3>
+            
+                <a href="/docs/api ">Core API</a>
+            
+                <a href="/docs/plugins ">Plugins API</a>
+            
         
     </aside>
     <main>
-        <h1 class="title">Advanced Samples</h1>
-        <h1 id="advanced-examples">Advanced Examples</h1>
+        <div class="body">
+            <h1 class="title">Advanced Samples</h1>
+            <p class="description"></p>
+            <h1 id="advanced-examples">Advanced Examples</h1>
 <p>Here are some more advanced examples to help you up your game more quickly</p>
 <h2 id="post-endpoint">POST endpoint</h2>
 <p>You can create a POST endpoint using the <code>post</code> method.
@@ -81,6 +94,8 @@ eon<span class="token punctuation">.</span><span class="token function">get</spa
 http<span class="token punctuation">.</span><span class="token function">createServer</span><span class="token punctuation">(</span>eon<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token number">8080</span><span class="token punctuation">,</span> <span class="token parameter">_</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Listening on http://localhost:8080/'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+        </div>
+        <div class="col-right"></div>
     </main>
 </body>
 
